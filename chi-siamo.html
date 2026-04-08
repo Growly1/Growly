@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Chi Siamo — Growly | Agenzia SMM Bologna</title>
+  <meta name="description" content="Growly: tre ventenni di Bologna che hanno fondato un'agenzia di social media marketing. Giovani, affamati, ossessionati dai risultati." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { position:relative; padding:10rem 2rem 5rem; text-align:center; overflow:hidden; }
+    .page-hero-glow { position:absolute; width:500px; height:500px; border-radius:50%; background:var(--accent); filter:blur(180px); opacity:0.1; top:-100px; left:50%; transform:translateX(-50%); }
+    .page-hero-content { position:relative; z-index:2; max-width:800px; margin:0 auto; }
+    .page-hero-tag { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:1.5rem; animation:fadeUp 0.7s ease both; }
+    .page-hero-tag::before { content:''; width:20px; height:1.5px; background:var(--mint); }
+    .page-hero h1 { font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:800; letter-spacing:-0.04em; margin-bottom:1.5rem; animation:fadeUp 0.7s 0.1s ease both; }
+    .page-hero h1 .gradient { background:linear-gradient(135deg,var(--mint),var(--accent-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .page-hero-sub { font-size:1.15rem; color:var(--text-secondary); max-width:600px; margin:0 auto; line-height:1.75; animation:fadeUp 0.7s 0.2s ease both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .story-section { background:var(--bg-secondary); }
+    .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .story-content h2 { font-size:2rem; margin-bottom:1.5rem; }
+    .story-content p { color:var(--text-secondary); font-size:0.98rem; line-height:1.8; margin-bottom:1.25rem; }
+    .story-content .highlight { color:var(--mint); font-weight:600; }
+    .story-visual { position:relative; background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-xl); padding:3rem; overflow:hidden; }
+    .story-visual::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(108,63,255,0.05),rgba(0,245,196,0.03)); }
+    .story-quote { position:relative; z-index:1; font-family:var(--font-display); font-size:1.6rem; font-weight:800; line-height:1.3; margin-bottom:2rem; }
+    .story-quote .mint { color:var(--mint); }
+    .story-values { position:relative; z-index:1; display:flex; flex-direction:column; gap:1rem; }
+    .story-value { display:flex; align-items:center; gap:1rem; padding:1rem 1.25rem; background:rgba(10,10,20,0.4); border:1px solid var(--border); border-radius:var(--radius-md); }
+    .story-value-icon { width:40px; height:40px; border-radius:10px; background:var(--mint-dim); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .story-value-text { font-size:0.9rem; color:var(--text-secondary); line-height:1.5; }
+    .story-value-text strong { color:var(--white); }
+    .age-banner { background:linear-gradient(135deg,rgba(108,63,255,0.08),rgba(0,245,196,0.04)); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:4rem 2rem; text-align:center; position:relative; z-index:1; }
+    .age-banner-inner { max-width:600px; margin:0 auto; }
+    .age-numbers { font-family:var(--font-display); font-size:clamp(3rem,8vw,5rem); font-weight:800; background:linear-gradient(135deg,var(--accent),var(--mint)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; margin-bottom:1rem; }
+    .age-banner h3 { font-size:1.5rem; margin-bottom:1rem; }
+    .age-banner p { color:var(--text-secondary); font-size:1rem; line-height:1.75; }
+    .manifesto-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1000px; margin:0 auto; }
+    .manifesto-card { background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2.5rem 2rem; text-align:center; transition:all var(--transition-smooth); }
+    .manifesto-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:var(--shadow-md); }
+    .manifesto-emoji { font-size:2.5rem; margin-bottom:1.25rem; }
+    .manifesto-card h3 { font-size:1.15rem; margin-bottom:0.75rem; }
+    .manifesto-card p { color:var(--text-secondary); font-size:0.88rem; line-height:1.7; }
+    .team-section { background:var(--bg-secondary); }
+    .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .team-card { background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-xl); padding:2.5rem 2rem; text-align:center; position:relative; overflow:hidden; transition:all var(--transition-smooth); }
+    .team-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--accent),var(--mint)); opacity:0; transition:opacity 0.3s; }
+    .team-card:hover::before { opacity:1; }
+    .team-card:hover { border-color:var(--border-hover); transform:translateY(-6px); }
+    .team-avatar { width:90px; height:90px; border-radius:50%; margin:0 auto 1.5rem; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:1.8rem; font-weight:800; }
+    .team-avatar.m { background:linear-gradient(135deg,rgba(108,63,255,0.2),rgba(108,63,255,0.05)); color:var(--accent-light); }
+    .team-avatar.r { background:linear-gradient(135deg,rgba(0,245,196,0.2),rgba(0,245,196,0.05)); color:var(--mint); }
+    .team-avatar.l { background:linear-gradient(135deg,rgba(139,106,255,0.2),rgba(139,106,255,0.05)); color:var(--accent-light); }
+    .team-name { font-size:1.2rem; font-weight:800; margin-bottom:0.25rem; }
+    .team-role { color:var(--text-muted); font-size:0.82rem; margin-bottom:1.25rem; }
+    .team-skills { display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; }
+    .team-skill { background:rgba(108,63,255,0.08); border:1px solid var(--border); border-radius:999px; padding:0.35rem 0.9rem; font-size:0.75rem; font-weight:600; color:var(--text-secondary); }
+    @media (max-width:900px) { .story-grid{grid-template-columns:1fr} .manifesto-grid{grid-template-columns:1fr} .team-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto} }
+    @media (max-width:640px) { .page-hero{padding:8rem 1.5rem 4rem} }
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="loader-logo">Growly</div></div>
+<div class="page-transition-overlay"></div>
+<canvas id="global-canvas"></canvas>
+<nav class="nav" id="main-nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="nav-logo-text">Growly</span><span class="nav-logo-dot"></span></a><div class="nav-links"><a href="index.html" class="nav-link">Servizi</a><a href="chi-siamo.html" class="nav-link active">Chi siamo</a><a href="prezzi.html" class="nav-link">Prezzi</a><a href="contatti.html" class="nav-link">Contatti</a></div><a href="contatti.html" class="btn nav-cta">Parliamoci →</a><button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="mobile-menu" id="mobile-menu"><a href="index.html" class="nav-link" onclick="closeMobile()">Servizi</a><a href="chi-siamo.html" class="nav-link active" onclick="closeMobile()">Chi siamo</a><a href="prezzi.html" class="nav-link" onclick="closeMobile()">Prezzi</a><a href="contatti.html" class="nav-link" onclick="closeMobile()">Contatti</a><a href="contatti.html" class="btn btn-primary" onclick="closeMobile()" style="margin-top:0.5rem;text-align:center">Parliamoci →</a></div>
+
+<section class="page-hero"><div class="page-hero-glow"></div><div class="page-hero-content"><span class="page-hero-tag">Chi siamo</span><h1>Tre ragazzi.<br><span class="gradient">Una fame assurda.</span></h1><p class="page-hero-sub">Niente ufficio con vista, niente slide corporate. Siamo tre ventenni di Bologna che si sono stancati di aspettare il permesso di qualcuno per costruirsi il futuro.</p></div></section>
+
+<section class="section story-section"><div class="section-inner"><div class="story-grid"><div class="story-content reveal"><h2>Come nasce Growly</h2><p>Massimiliano e Riccardo sono amici da sempre. Stesso pallino: <span class="highlight">costruire qualcosa di proprio.</span> Non un progetto per il voto, non un hobby — qualcosa di vero.</p><p>Poi è arrivato Lorenzo. Competenze tecniche che mancavano e la stessa voglia di spaccare. Growly è nata così: dalla decisione di fare le cose sul serio.</p><p><span class="highlight">Non abbiamo 10 anni di esperienza. Abbiamo qualcosa di più raro: la fame di chi ha tutto da dimostrare.</span></p></div><div class="story-visual reveal reveal-d2"><div class="story-quote">"Ci meritiamo di <span class="mint">costruire</span> qualcosa di nostro."</div><div class="story-values"><div class="story-value"><div class="story-value-icon">🔥</div><div class="story-value-text"><strong>Fame di risultati.</strong> Non ci accontentiamo. Mai.</div></div><div class="story-value"><div class="story-value-icon">🎯</div><div class="story-value-text"><strong>Disciplina.</strong> Ogni giorno, anche quelli difficili.</div></div><div class="story-value"><div class="story-value-icon">🤝</div><div class="story-value-text"><strong>Trasparenza.</strong> Se non possiamo aiutarti, te lo diciamo in faccia.</div></div></div></div></div></div></section>
+
+<div class="age-banner"><div class="age-banner-inner reveal-scale"><div class="age-numbers">20 — 21</div><h3>Anni. Non scuse.</h3><p>L'età non è un limite — è benzina. Parliamo la lingua del tuo pubblico perché siamo quel pubblico. E abbiamo l'energia di chi ha tutto da costruire.</p></div></div>
+
+<section class="section" style="text-align:center;padding:6rem 2rem"><div class="section-inner"><div class="section-header center reveal"><span class="section-tag">In cosa crediamo</span><h2 class="section-title">Il nostro manifesto</h2></div><div class="manifesto-grid"><div class="manifesto-card reveal"><div class="manifesto-emoji">💎</div><h3>Qualità sopra quantità</h3><p>Meglio 4 contenuti perfetti che 20 mediocri. Il tuo brand non merita grafiche fatte in fretta.</p></div><div class="manifesto-card reveal reveal-d1"><div class="manifesto-emoji">🔍</div><h3>Trasparenza radicale</h3><p>Se qualcosa non funziona, lo diciamo. Se non siamo la scelta giusta per te, lo diciamo. Zero fumo.</p></div><div class="manifesto-card reveal reveal-d2"><div class="manifesto-emoji">🚀</div><h3>Risultati misurabili</h3><p>Ti mostriamo i numeri che impattano il fatturato — quelli che pagano le bollette, non quelli che gonfiano l'ego.</p></div></div></div></section>
+
+<section class="section team-section" id="team"><div class="section-inner"><div class="section-header center reveal"><span class="section-tag">Il team</span><h2 class="section-title">Le facce dietro <span class="gradient">Growly</span></h2><p class="section-sub">Tre persone. Competenze complementari. Un obiettivo: far crescere il tuo brand.</p></div><div class="team-grid"><div class="team-card reveal"><div class="team-avatar m">M</div><div class="team-name">Massimiliano</div><div class="team-role">Co-Founder</div><div class="team-skills"><span class="team-skill">Videomaker</span><span class="team-skill">Website Builder</span><span class="team-skill">AI Specialist</span></div></div><div class="team-card reveal reveal-d1"><div class="team-avatar r">R</div><div class="team-name">Riccardo</div><div class="team-role">Co-Founder</div><div class="team-skills"><span class="team-skill">Videomaker</span><span class="team-skill">Copywriter</span><span class="team-skill">Website Builder</span></div></div><div class="team-card reveal reveal-d2"><div class="team-avatar l">L</div><div class="team-name">Lorenzo</div><div class="team-role">Co-Founder</div><div class="team-skills"><span class="team-skill">Graphic Designer</span><span class="team-skill">Website Builder</span><span class="team-skill">AI Specialist</span></div></div></div></div></section>
+
+<section class="section cta-section"><div class="section-inner"><div class="cta-banner reveal-scale"><h2>Ti abbiamo convinto?<br>Bene. Parliamoci.</h2><p>Niente pitch aggressivi. Solo una chiacchierata per capire se ha senso lavorare insieme.</p><div class="cta-btns"><a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.5rem">Raccontaci del tuo brand →</a><a href="https://wa.me/393479714112" target="_blank" class="btn btn-secondary" style="padding:1rem 2.5rem">💬 WhatsApp</a></div></div></div></section>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-grid"><div><div class="footer-logo-text">Growly</div><p class="footer-tagline">Agenzia SMM a Bologna. Tre ragazzi, contenuti dal vivo, strategie su misura.</p><div class="footer-socials"><a href="https://instagram.com/growlyagency" target="_blank" class="social-link" aria-label="Instagram">📸</a><a href="https://wa.me/393479714112" target="_blank" class="social-link" aria-label="WhatsApp">💬</a><a href="mailto:growly.bsn@gmail.com" class="social-link" aria-label="Email">✉️</a></div></div><div class="footer-col"><h4>Pagine</h4><ul class="footer-links"><li><a href="index.html">Servizi</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="prezzi.html">Prezzi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div><div class="footer-col"><h4>Servizi</h4><ul class="footer-links"><li><a href="index.html#servizi">Social Media</a></li><li><a href="index.html#servizi">Siti Web</a></li><li><a href="index.html#servizi">Meta Ads</a></li></ul></div><div class="footer-col"><h4>Contatti</h4><ul class="footer-links"><li><a href="mailto:growly.bsn@gmail.com">growly.bsn@gmail.com</a></li><li><a href="https://wa.me/393479714112">+39 347 971 4112</a></li><li>Bologna, Italia</li></ul></div></div><div class="footer-bottom"><p>© 2025 Growly. Tutti i diritti riservati.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div></div></div></footer>
+<script src="main.js"></script>
+</body>
+</html>

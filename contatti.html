@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Contatti — Growly | Agenzia SMM Bologna</title>
+  <meta name="description" content="Prenota una call gratuita con Growly o raccontaci della tua attività." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      position: relative; padding: 10rem 2rem 4rem;
+      text-align: center; overflow: hidden;
+    }
+    .page-hero-glow {
+      position: absolute; width: 500px; height: 500px; border-radius: 50%;
+      background: var(--accent); filter: blur(180px); opacity: 0.1;
+      top: -100px; left: 50%; transform: translateX(-50%);
+    }
+    .page-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .page-hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mint); margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease both;
+    }
+    .page-hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--mint); }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 800;
+      letter-spacing: -0.04em; margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .page-hero h1 .gradient {
+      background: linear-gradient(135deg, var(--mint), var(--accent-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .page-hero-sub {
+      font-size: 1.15rem; color: var(--text-secondary);
+      max-width: 580px; margin: 0 auto; line-height: 1.75;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── TWO PATHS ── */
+    .contact-paths {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .contact-path {
+      background: var(--bg-card-solid); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 2.5rem; text-align: center;
+      transition: all var(--transition-smooth);
+    }
+    .contact-path:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .contact-path-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+    .contact-path h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .contact-path p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .contact-path .btn { width: 100%; }
+
+    /* ── DIRECT CONTACTS ── */
+    .contact-direct {
+      display: flex; gap: 1rem; justify-content: center;
+      flex-wrap: wrap; margin-top: 3rem;
+    }
+    .contact-pill {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 1.5rem; background: var(--bg-card-solid);
+      border: 1px solid var(--border); border-radius: 999px;
+      font-size: 0.9rem; transition: all var(--transition-fast);
+      min-height: 44px;
+    }
+    .contact-pill:hover { border-color: var(--mint); transform: translateY(-2px); }
+    .contact-pill-icon { font-size: 1.1rem; }
+
+    /* ═══════ QUESTIONNAIRE MODAL — Conversational ═══════ */
+    .q-modal {
+      position: fixed; inset: 0; z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .q-modal.open { opacity: 1; visibility: visible; }
+    .q-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10, 10, 20, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .q-modal-content {
+      position: relative; width: 100%; max-width: 540px;
+      max-height: 90vh; overflow-y: auto; margin: 1rem;
+      background: var(--bg-card-solid); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 2.5rem;
+    }
+    .q-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--text-muted);
+      border-radius: 50%; transition: all var(--transition-fast); z-index: 2;
+    }
+    .q-close:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .q-progress { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 2rem; overflow: hidden; }
+    .q-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--mint));
+      border-radius: 2px; width: 14%;
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .q-step { display: none; animation: qIn 0.4s ease; }
+    .q-step.active { display: block; }
+    .q-step.prev { display: none; }
+    @keyframes qIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
+
+    .q-greeting { font-size: 1rem; color: var(--mint); font-weight: 600; margin-bottom: 0.5rem; }
+    .q-label { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .q-hint { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem; }
+
+    .q-input {
+      width: 100%; background: var(--bg-secondary);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem; color: var(--white);
+      font-family: var(--font-body); font-size: 1rem;
+      outline: none; transition: border-color var(--transition-fast);
+      min-height: 44px;
+    }
+    .q-input:focus { border-color: var(--accent); }
+    .q-input::placeholder { color: var(--text-muted); }
+    .q-input.shake { animation: shake 0.4s ease; border-color: #FF6B6B; }
+    textarea.q-input { min-height: 100px; resize: vertical; }
+    @keyframes shake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-6px); } 75% { transform:translateX(6px); } }
+
+    /* Pre-set suggestion chips */
+    .q-suggestions {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;
+    }
+    .q-suggestion {
+      padding: 0.5rem 1rem; border-radius: 999px;
+      background: rgba(108,63,255,0.06); border: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--text-secondary);
+      transition: all var(--transition-fast); min-height: 36px;
+      display: inline-flex; align-items: center;
+    }
+    .q-suggestion:hover { border-color: var(--mint); color: var(--mint); }
+
+    /* Option cards */
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .q-options.three-col { grid-template-columns: 1fr 1fr 1fr; }
+    .q-option {
+      padding: 1rem; background: var(--bg-secondary);
+      border: 1.5px solid var(--border); border-radius: var(--radius-md);
+      text-align: center; transition: all var(--transition-fast);
+      font-size: 0.88rem; min-height: 44px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .q-option:hover { border-color: var(--border-hover); }
+    .q-option.selected {
+      border-color: var(--mint); background: var(--mint-dim);
+      color: var(--mint); font-weight: 600;
+    }
+    .q-opt-icon { font-size: 1.2rem; margin-bottom: 0.3rem; }
+    .q-option-col { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+
+    .q-nav { display: flex; gap: 0.75rem; margin-top: 1.75rem; }
+    .q-btn {
+      flex: 1; padding: 0.9rem 1.5rem; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 0.95rem; text-align: center;
+      transition: all var(--transition-smooth); min-height: 44px;
+      border: none; font-family: var(--font-body);
+    }
+    .q-btn-next { background: var(--accent); color: var(--white); }
+    .q-btn-next:hover { background: var(--accent-light); }
+    .q-btn-prev {
+      background: rgba(255,255,255,0.04); color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .q-btn-prev:hover { color: var(--white); }
+    .q-btn-submit {
+      background: linear-gradient(135deg, var(--accent), var(--mint));
+      color: var(--bg-primary); font-weight: 700;
+    }
+    .q-btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+
+    .q-confirm { text-align: center; padding: 2rem 0; }
+    .q-confirm-check {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--mint-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; margin: 0 auto 1.5rem;
+      animation: confirmPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes confirmPop { from { transform: scale(0); } to { transform: scale(1); } }
+    .q-confirm h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .q-confirm p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+    /* FAQ */
+    .faq-section { background: var(--bg-secondary); }
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: var(--radius-md);
+      margin-bottom: 0.75rem; overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; font-size: 0.95rem; font-weight: 600;
+      color: var(--text-primary); background: var(--bg-card-solid);
+      text-align: left; min-height: 44px;
+    }
+    .faq-icon { font-size: 1.2rem; color: var(--mint); transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 1.5rem; color: var(--text-secondary);
+      font-size: 0.9rem; line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+
+    @media (max-width: 768px) {
+      .contact-paths { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .contact-direct { flex-direction: column; align-items: center; }
+      .q-options { grid-template-columns: 1fr; }
+      .q-options.three-col { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .page-hero { padding: 8rem 1.5rem 3rem; }
+      .q-modal-content { padding: 2rem 1.5rem; margin: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-loader"><div class="loader-logo">Growly</div></div>
+<div class="page-transition-overlay"></div>
+<canvas id="global-canvas"></canvas>
+
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-text">Growly</span><span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Servizi</a>
+      <a href="chi-siamo.html" class="nav-link">Chi siamo</a>
+      <a href="prezzi.html" class="nav-link">Prezzi</a>
+      <a href="contatti.html" class="nav-link active">Contatti</a>
+    </div>
+    <a href="contatti.html" class="btn nav-cta">Parliamoci →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link" onclick="closeMobile()">Servizi</a>
+  <a href="chi-siamo.html" class="nav-link" onclick="closeMobile()">Chi siamo</a>
+  <a href="prezzi.html" class="nav-link" onclick="closeMobile()">Prezzi</a>
+  <a href="contatti.html" class="nav-link active" onclick="closeMobile()">Contatti</a>
+  <a href="contatti.html" class="btn btn-primary" onclick="closeMobile()" style="margin-top:0.5rem;text-align:center">Parliamoci →</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">Contatti</span>
+    <h1>Facciamo <span class="gradient">conoscenza.</span></h1>
+    <p class="page-hero-sub">
+      Due opzioni: prenota una call gratuita oppure raccontaci qualcosa di te. Nessun venditore, nessun pitch — solo noi tre.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════ DUE PERCORSI ═══════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="contact-paths reveal">
+      <!-- Path 1: Prenota call -->
+      <div class="contact-path">
+        <div class="contact-path-icon">📞</div>
+        <h3>Prenota una call gratuita</h3>
+        <p>15 minuti per conoscerci, capire cosa ti serve e vedere se ha senso lavorare insieme. Zero impegno.</p>
+        <a href="https://wa.me/393479714112?text=Ciao!%20Vorrei%20prenotare%20una%20call%20gratuita%20con%20Growly." target="_blank" class="btn btn-primary">Prenota su WhatsApp →</a>
+      </div>
+
+      <!-- Path 2: Conosciamoci -->
+      <div class="contact-path">
+        <div class="contact-path-icon">💬</div>
+        <h3>Raccontaci di te</h3>
+        <p>Rispondi a qualche domanda veloce — quasi tutte a scelta multipla. Così arriviamo alla call già preparati.</p>
+        <button class="btn btn-secondary" data-open-questionnaire>Inizia da qui →</button>
+      </div>
+    </div>
+
+    <!-- Direct contacts -->
+    <div class="contact-direct reveal reveal-d1">
+      <a href="mailto:growly.bsn@gmail.com" class="contact-pill">
+        <span class="contact-pill-icon">✉️</span> growly.bsn@gmail.com
+      </a>
+      <a href="https://wa.me/393479714112" target="_blank" class="contact-pill">
+        <span class="contact-pill-icon">💬</span> +39 347 971 4112
+      </a>
+      <a href="https://instagram.com/growlyagency" target="_blank" class="contact-pill">
+        <span class="contact-pill-icon">📸</span> @growlyagency
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ QUESTIONNAIRE MODAL ═══════ -->
+<div class="q-modal" id="questionnaire-modal">
+  <div class="q-modal-backdrop" data-close-questionnaire></div>
+  <div class="q-modal-content">
+    <button class="q-close" data-close-questionnaire>✕</button>
+    <div class="q-progress"><div class="q-progress-fill"></div></div>
+
+    <!-- Step 1: Nome -->
+    <div class="q-step active" data-key="nome">
+      <div class="q-greeting">Ciao! 👋</div>
+      <div class="q-label">Come ti chiami?</div>
+      <div class="q-hint">Nome e cognome — così sappiamo con chi parliamo</div>
+      <input type="text" class="q-input" placeholder="Es: Marco Bianchi" required />
+      <div class="q-nav"><button class="q-btn q-btn-next" data-next>Avanti →</button></div>
+    </div>
+
+    <!-- Step 2: Settore (visual cards) -->
+    <div class="q-step" data-key="settore">
+      <div class="q-greeting">Piacere! 🤝</div>
+      <div class="q-label">In che settore lavori?</div>
+      <div class="q-hint">Seleziona quello più vicino alla tua attività</div>
+      <div class="q-options three-col">
+        <div class="q-option" data-value="Ristorante / Bar"><div class="q-option-col"><span class="q-opt-icon">🍕</span>Ristorante / Bar</div></div>
+        <div class="q-option" data-value="Barbiere / Parrucchiere"><div class="q-option-col"><span class="q-opt-icon">✂️</span>Barbiere / Hair</div></div>
+        <div class="q-option" data-value="Palestra / Wellness"><div class="q-option-col"><span class="q-opt-icon">💪</span>Palestra / Wellness</div></div>
+        <div class="q-option" data-value="Negozio"><div class="q-option-col"><span class="q-opt-icon">🛍️</span>Negozio</div></div>
+        <div class="q-option" data-value="Studio professionale"><div class="q-option-col"><span class="q-opt-icon">⚖️</span>Professionista</div></div>
+        <div class="q-option" data-value="Altro"><div class="q-option-col"><span class="q-opt-icon">📦</span>Altro</div></div>
+      </div>
+      <div class="q-nav">
+        <button class="q-btn q-btn-prev" data-prev>← Indietro</button>
+        <button class="q-btn q-btn-next" data-next>Avanti →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Obiettivo (pre-set) -->
+    <div class="q-step" data-key="obiettivo">
+      <div class="q-greeting">Perfetto! 🎯</div>
+      <div class="q-label">Qual è il tuo obiettivo principale?</div>
+      <div class="q-hint">Cosa vorresti ottenere?</div>
+      <div class="q-options">
+        <div class="q-option" data-value="Più clienti dalla zona">📍 Più clienti dalla zona</div>
+        <div class="q-option" data-value="Presenza social professionale">📱 Presenza social professionale</div>
+        <div class="q-option" data-value="Un sito web che converta">🌐 Un sito web che converta</div>
+        <div class="q-option" data-value="Far crescere il brand online">🚀 Far crescere il brand</div>
+        <div class="q-option" data-value="Non so ancora, vorrei capire">🤷 Non so ancora</div>
+      </div>
+      <div class="q-nav">
+        <button class="q-btn q-btn-prev" data-prev>← Indietro</button>
+        <button class="q-btn q-btn-next" data-next>Avanti →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Budget (friendly) -->
+    <div class="q-step" data-key="budget">
+      <div class="q-greeting">Ci siamo quasi! 💰</div>
+      <div class="q-label">Hai un budget in mente?</div>
+      <div class="q-hint">Nessun giudizio — ci serve per proporti la cosa giusta</div>
+      <div class="q-options">
+        <div class="q-option" data-value="Sotto €500">Sotto €500/mese</div>
+        <div class="q-option" data-value="€500 – €1.000">€500 – €1.000</div>
+        <div class="q-option" data-value="€1.000 – €1.500">€1.000 – €1.500</div>
+        <div class="q-option" data-value="Devo ancora capire">Devo ancora capire</div>
+      </div>
+      <div class="q-nav">
+        <button class="q-btn q-btn-prev" data-prev>← Indietro</button>
+        <button class="q-btn q-btn-next" data-next>Avanti →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Email + opzionale -->
+    <div class="q-step" data-key="email">
+      <div class="q-greeting">Ultimo step! 🏁</div>
+      <div class="q-label">Dove ti ricontattiamo?</div>
+      <div class="q-hint">Email o WhatsApp — come preferisci</div>
+      <input type="email" class="q-input" placeholder="La tua email" required style="margin-bottom:0.75rem" />
+      <div class="q-suggestions">
+        <span class="q-suggestion" onclick="this.closest('.q-step').querySelector('textarea').value='Preferisco WhatsApp'">💬 Preferisco WhatsApp</span>
+        <span class="q-suggestion" onclick="this.closest('.q-step').querySelector('textarea').value='Chiamatemi in orario lavorativo'">📞 Meglio una chiamata</span>
+        <span class="q-suggestion" onclick="this.closest('.q-step').querySelector('textarea').value='Scrivetemi via email'">✉️ Solo email</span>
+      </div>
+      <textarea class="q-input" placeholder="Vuoi aggiungere qualcosa? (opzionale)" style="margin-top:0.75rem"></textarea>
+      <div class="q-nav">
+        <button class="q-btn q-btn-prev" data-prev>← Indietro</button>
+        <button class="q-btn q-btn-submit" data-submit-questionnaire>Invia 🚀</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Conferma -->
+    <div class="q-step" data-key="confirm">
+      <div class="q-confirm">
+        <div class="q-confirm-check">✅</div>
+        <h3>Ci vediamo presto!</h3>
+        <p>Ti ricontattiamo entro 2 ore lavorative con qualche idea concreta. Se vuoi accelerare, scrivici su WhatsApp.</p>
+        <a href="https://wa.me/393479714112" target="_blank" class="btn btn-secondary" style="padding:0.85rem 2rem">💬 Scrivici su WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section faq-section" id="faq">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <span class="section-tag">Domande frequenti</span>
+      <h2 class="section-title">Hai dubbi? È normale.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">Quanto tempo ci vuole per vedere risultati?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Con le ads, i primi dati arrivano dalla prima settimana. Per la crescita organica, 2-3 mesi di lavoro costante. La crescita vera richiede almeno 6 mesi. Chi ti promette miracoli in 30 giorni ti sta prendendo in giro.</div>
+      </div>
+      <div class="faq-item reveal reveal-d1">
+        <button class="faq-question" onclick="toggleFaq(this)">Posso disdire quando voglio?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Sì. Preavviso di 30 giorni e basta. Chi lavora bene non ha bisogno di trappole contrattuali.</div>
+      </div>
+      <div class="faq-item reveal reveal-d2">
+        <button class="faq-question" onclick="toggleFaq(this)">Chi crea i contenuti?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Noi tre. Niente freelance esterni, niente outsourcing. Dalla strategia alle riprese, dal montaggio al copy — sempre lo stesso team.</div>
+      </div>
+      <div class="faq-item reveal reveal-d3">
+        <button class="faq-question" onclick="toggleFaq(this)">Devo essere a Bologna?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">No. Le riprese le organizziamo dove serve, le call sono online. Bologna è la nostra base, non un confine.</div>
+      </div>
+      <div class="faq-item reveal reveal-d4">
+        <button class="faq-question" onclick="toggleFaq(this)">Come funzionano le riprese?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Arriviamo con copioni già pronti e la nostra attrezzatura. Registriamo in mezza giornata, tu devi solo essere te stesso. Poi montiamo e pubblichiamo noi.</div>
+      </div>
+      <div class="faq-item reveal reveal-d5">
+        <button class="faq-question" onclick="toggleFaq(this)">Usate l'intelligenza artificiale?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Sì, come acceleratore. Velocizza ricerca e bozze, ma ogni contenuto è pensato e finalizzato da noi. L'AI è il copilota, non il pilota.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">Growly</div>
+        <p class="footer-tagline">Agenzia SMM a Bologna. Tre ragazzi, contenuti dal vivo, strategie su misura.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/growlyagency" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/393479714112" target="_blank" class="social-link" aria-label="WhatsApp">💬</a>
+          <a href="mailto:growly.bsn@gmail.com" class="social-link" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pagine</h4><ul class="footer-links"><li><a href="index.html">Servizi</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="prezzi.html">Prezzi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div>
+      <div class="footer-col"><h4>Servizi</h4><ul class="footer-links"><li><a href="index.html#servizi">Social Media</a></li><li><a href="index.html#servizi">Siti Web</a></li><li><a href="index.html#servizi">Meta Ads</a></li></ul></div>
+      <div class="footer-col"><h4>Contatti</h4><ul class="footer-links"><li><a href="mailto:growly.bsn@gmail.com">growly.bsn@gmail.com</a></li><li><a href="https://wa.me/393479714112">+39 347 971 4112</a></li><li>Bologna, Italia</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Growly. Tutti i diritti riservati.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div></div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

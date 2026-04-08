@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Prezzi — Growly | Agenzia SMM Bologna</title>
+  <meta name="description" content="Prezzi chiari, senza sorprese. Pacchetti social media e siti web per PMI italiane. Crea il tuo pacchetto su misura." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      position: relative; padding: 10rem 2rem 4rem;
+      text-align: center; overflow: hidden;
+    }
+    .page-hero-glow {
+      position: absolute; width: 500px; height: 500px; border-radius: 50%;
+      background: var(--accent); filter: blur(180px); opacity: 0.1;
+      top: -100px; left: 50%; transform: translateX(-50%);
+    }
+    .page-hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .page-hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mint); margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease both;
+    }
+    .page-hero-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--mint); }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 800;
+      letter-spacing: -0.04em; margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .page-hero h1 .gradient {
+      background: linear-gradient(135deg, var(--mint), var(--accent-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .page-hero-sub {
+      font-size: 1.15rem; color: var(--text-secondary);
+      max-width: 600px; margin: 0 auto; line-height: 1.75;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+    .pricing-category-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .category-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .category-icon.web { background: rgba(108,63,255,0.1); }
+    .category-icon.social { background: rgba(0,245,196,0.1); }
+    .category-title { font-size: 1.5rem; font-weight: 800; }
+    .category-subtitle { color: var(--text-secondary); font-size: 0.88rem; }
+
+    .pricing-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; max-width: 900px;
+    }
+    .pricing-grid-3 {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+
+    .price-card {
+      background: var(--bg-card-solid); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 2.5rem 2rem;
+      display: flex; flex-direction: column; position: relative;
+      overflow: hidden; transition: all var(--transition-smooth);
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .price-card.featured {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, rgba(108,63,255,0.06) 0%, var(--bg-card-solid) 50%);
+    }
+    .price-badge {
+      position: absolute; top: 0; right: 2rem;
+      background: var(--accent); color: var(--white);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 0.4rem 1rem 0.5rem; border-radius: 0 0 8px 8px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .price-badge.combo {
+      background: linear-gradient(135deg, var(--accent), var(--mint));
+      color: var(--bg-primary);
+    }
+    .price-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .price-desc { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.5rem; line-height: 1.5; }
+    .price-amount {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 800;
+      color: var(--mint); line-height: 1;
+      transition: text-shadow 0.3s ease;
+    }
+    .price-amount .currency { font-size: 1.8rem; }
+    .price-burst { text-shadow: 0 0 40px var(--mint-glow), 0 0 80px rgba(0,245,196,0.2); }
+    .price-period { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 2rem; }
+    .price-first-month {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(0,245,196,0.08); border: 1px solid rgba(0,245,196,0.2);
+      border-radius: 999px; padding: 0.3rem 0.9rem;
+      font-size: 0.75rem; color: var(--mint); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .price-then { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 2rem; }
+    .price-features { display: flex; flex-direction: column; gap: 0.75rem; flex: 1; margin-bottom: 2rem; }
+    .price-feature {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.88rem; color: var(--text-primary);
+    }
+    .price-feature .check { color: var(--mint); font-weight: 700; flex-shrink: 0; }
+    .price-feature.highlight { color: var(--mint); font-weight: 600; }
+
+    .addon-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; background: rgba(108,63,255,0.05);
+      border: 1px solid var(--border); border-radius: var(--radius-md);
+      margin-bottom: 1.5rem; cursor: pointer; transition: all var(--transition-fast);
+      min-height: 44px;
+    }
+    .addon-toggle:hover { border-color: var(--border-hover); }
+    .addon-name { font-size: 0.85rem; font-weight: 600; }
+    .addon-price { font-size: 0.78rem; color: var(--mint); font-weight: 600; }
+    .addon-switch {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--text-muted); position: relative;
+      transition: background 0.3s; flex-shrink: 0; margin-left: 1rem;
+    }
+    .addon-switch::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 18px; height: 18px; border-radius: 50%; background: white;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .addon-toggle.active .addon-switch { background: var(--mint); }
+    .addon-toggle.active .addon-switch::after { transform: translateX(20px); }
+
+    .btn-price {
+      display: block; text-align: center; padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-sm); font-weight: 600; font-size: 0.92rem;
+      transition: all var(--transition-smooth); min-height: 44px;
+    }
+    .btn-price-primary { background: var(--accent); color: var(--white); }
+    .btn-price-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
+    .btn-price-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text-primary); }
+    .btn-price-outline:hover { border-color: var(--mint); color: var(--mint); transform: translateY(-2px); }
+
+    .pricing-separator { padding: 0 2rem; max-width: 1200px; margin: 0 auto; }
+
+    /* ═══════ CONFIGURATOR ═══════ */
+    .configurator-section { background: var(--bg-secondary); }
+    .config-box {
+      background: var(--bg-card-solid); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 3rem;
+      max-width: 800px; margin: 0 auto;
+    }
+    .config-label {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
+    }
+    .config-chips {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem;
+    }
+    .config-chip {
+      padding: 0.7rem 1.2rem; border-radius: 999px;
+      background: rgba(108,63,255,0.06); border: 1px solid var(--border);
+      font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+      transition: all var(--transition-fast); min-height: 44px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .config-chip:hover { border-color: var(--border-hover); color: var(--white); }
+    .config-chip.selected {
+      border-color: var(--mint); background: var(--mint-dim);
+      color: var(--mint); font-weight: 600;
+    }
+    .config-chip .chip-price { font-size: 0.75rem; opacity: 0.7; }
+    .config-total-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 0; border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+    .config-total-label { font-size: 1.1rem; font-weight: 600; }
+    .config-total-amount {
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
+      color: var(--mint);
+    }
+    .config-total-period { color: var(--text-muted); font-size: 0.82rem; }
+    .config-note {
+      color: var(--text-muted); font-size: 0.82rem; margin-top: 0.5rem; line-height: 1.5;
+    }
+    .config-cta { margin-top: 2rem; text-align: center; }
+
+    @media (max-width: 900px) {
+      .pricing-grid-2 { grid-template-columns: 1fr; max-width: 480px; }
+      .pricing-grid-3 { grid-template-columns: 1fr; max-width: 480px; }
+    }
+    @media (max-width: 640px) {
+      .page-hero { padding: 8rem 1.5rem 3rem; }
+      .config-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-loader"><div class="loader-logo">Growly</div></div>
+<div class="page-transition-overlay"></div>
+<canvas id="global-canvas"></canvas>
+
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-text">Growly</span><span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Servizi</a>
+      <a href="chi-siamo.html" class="nav-link">Chi siamo</a>
+      <a href="prezzi.html" class="nav-link active">Prezzi</a>
+      <a href="contatti.html" class="nav-link">Contatti</a>
+    </div>
+    <a href="contatti.html" class="btn nav-cta">Parliamoci →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link" onclick="closeMobile()">Servizi</a>
+  <a href="chi-siamo.html" class="nav-link" onclick="closeMobile()">Chi siamo</a>
+  <a href="prezzi.html" class="nav-link active" onclick="closeMobile()">Prezzi</a>
+  <a href="contatti.html" class="nav-link" onclick="closeMobile()">Contatti</a>
+  <a href="contatti.html" class="btn btn-primary" onclick="closeMobile()" style="margin-top:0.5rem;text-align:center">Parliamoci →</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">Prezzi</span>
+    <h1>Prezzi chiari.<br><span class="gradient">Zero sorprese.</span></h1>
+    <p class="page-hero-sub">
+      Sai esattamente cosa paghi e cosa ottieni. Nessun vincolo — se non ti convince, te ne vai. Preavviso di 30 giorni e basta.
+    </p>
+  </div>
+</section>
+
+<!-- SITI WEB -->
+<section class="section">
+  <div class="section-inner">
+    <div class="pricing-category-header reveal">
+      <div class="category-icon web">🌐</div>
+      <div>
+        <div class="category-title">Siti Web Su Misura</div>
+        <div class="category-subtitle">Codice scritto a mano, design unico, zero template</div>
+      </div>
+    </div>
+    <div class="pricing-grid-2">
+      <div class="price-card reveal">
+        <div class="price-name">Base</div>
+        <div class="price-desc">Il tuo biglietto da visita digitale, fatto bene.</div>
+        <div class="price-amount"><span class="currency">€</span><span id="base-price">449</span></div>
+        <div class="price-period">al mese · creazione + mantenimento</div>
+        <div class="addon-toggle" id="addon-anim">
+          <div class="addon-info">
+            <span class="addon-name">+ Animazioni sul sito</span>
+            <span class="addon-price">+€110/mese</span>
+          </div>
+          <div class="addon-switch"></div>
+        </div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check">✓</span> Fino a 5 pagine</div>
+          <div class="price-feature"><span class="check">✓</span> Design personalizzato</div>
+          <div class="price-feature"><span class="check">✓</span> Mobile-first responsive</div>
+          <div class="price-feature"><span class="check">✓</span> SEO on-page base</div>
+          <div class="price-feature"><span class="check">✓</span> Hosting e dominio inclusi</div>
+        </div>
+        <a href="contatti.html" class="btn-price btn-price-outline">Inizia da qui</a>
+      </div>
+      <div class="price-card featured reveal reveal-d1">
+        <div class="price-badge">Consigliato</div>
+        <div class="price-name">Professional</div>
+        <div class="price-desc">Il sito che i tuoi competitor vorrebbero avere.</div>
+        <div class="price-amount"><span class="currency">€</span>649</div>
+        <div class="price-period">al mese · creazione + mantenimento</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check">✓</span> Pagine illimitate</div>
+          <div class="price-feature"><span class="check">✓</span> Design premium personalizzato</div>
+          <div class="price-feature highlight"><span class="check">✓</span> Animazioni e interattività incluse</div>
+          <div class="price-feature"><span class="check">✓</span> SEO on-page avanzato</div>
+          <div class="price-feature highlight"><span class="check">✓</span> Modifiche in tempo reale</div>
+          <div class="price-feature"><span class="check">✓</span> Hosting e dominio inclusi</div>
+          <div class="price-feature"><span class="check">✓</span> Supporto prioritario</div>
+        </div>
+        <a href="contatti.html" class="btn-price btn-price-primary">Scegli Professional</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pricing-separator"><hr class="divider" /></div>
+
+<!-- SOCIAL MEDIA -->
+<section class="section">
+  <div class="section-inner">
+    <div class="pricing-category-header reveal">
+      <div class="category-icon social">📱</div>
+      <div>
+        <div class="category-title">Social Media Management</div>
+        <div class="category-subtitle">Gestione completa con contenuti registrati dal vivo</div>
+      </div>
+    </div>
+    <div class="pricing-grid-3">
+      <div class="price-card reveal">
+        <div class="price-name">Starter</div>
+        <div class="price-desc">Per chi parte da zero. Un piede nel mondo social, fatto bene.</div>
+        <div class="price-amount"><span class="currency">€</span>379</div>
+        <div class="price-period">al mese</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check">✓</span> 1 piattaforma</div>
+          <div class="price-feature"><span class="check">✓</span> 4 Reel al mese</div>
+          <div class="price-feature"><span class="check">✓</span> 8 post al mese</div>
+          <div class="price-feature"><span class="check">✓</span> 2 sessioni riprese dal vivo</div>
+          <div class="price-feature"><span class="check">✓</span> Report mensile</div>
+        </div>
+        <a href="contatti.html" class="btn-price btn-price-outline">Inizia da qui</a>
+      </div>
+      <div class="price-card featured reveal reveal-d1">
+        <div class="price-badge">Più scelto</div>
+        <div class="price-name">Growth</div>
+        <div class="price-desc">Per chi vuole crescere sul serio su più piattaforme.</div>
+        <div class="price-amount"><span class="currency">€</span>679</div>
+        <div class="price-period">al mese</div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check">✓</span> 2 piattaforme social</div>
+          <div class="price-feature"><span class="check">✓</span> 6 Reel + 6 video TikTok</div>
+          <div class="price-feature"><span class="check">✓</span> 12 post su Instagram</div>
+          <div class="price-feature"><span class="check">✓</span> 6 sessioni riprese</div>
+          <div class="price-feature highlight"><span class="check">✓</span> €150 in Ads incluse</div>
+          <div class="price-feature"><span class="check">✓</span> Report mensile</div>
+        </div>
+        <a href="contatti.html" class="btn-price btn-price-primary">Scegli Growth</a>
+      </div>
+      <div class="price-card reveal reveal-d2">
+        <div class="price-badge combo">Social + Web</div>
+        <div class="price-name">All-In</div>
+        <div class="price-desc">Il pacchetto completo. Social su 3 piattaforme + sito web.</div>
+        <div class="price-first-month">🔥 Primo mese</div>
+        <div class="price-amount"><span class="currency">€</span>1.279</div>
+        <div class="price-then">poi €1.079/mese</div>
+        <div class="price-features">
+          <div class="price-feature highlight"><span class="check">✓</span> Sito web incluso</div>
+          <div class="price-feature"><span class="check">✓</span> 3 piattaforme</div>
+          <div class="price-feature"><span class="check">✓</span> 8 Reel + 8 TikTok + 8 post FB</div>
+          <div class="price-feature"><span class="check">✓</span> 8 sessioni riprese</div>
+          <div class="price-feature highlight"><span class="check">✓</span> €300 in Ads incluse</div>
+          <div class="price-feature"><span class="check">✓</span> Report settimanali</div>
+        </div>
+        <a href="contatti.html" class="btn-price btn-price-primary">Scegli All-In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════ CONFIGURATORE PACCHETTO ═══════ -->
+<section class="section configurator-section" id="configuratore">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <span class="section-tag">Su misura</span>
+      <h2 class="section-title">Crea il tuo <span class="gradient">pacchetto</span></h2>
+      <p class="section-sub">Nessun pacchetto fa per te? Seleziona solo quello che ti serve e vedi il prezzo in tempo reale.</p>
+    </div>
+
+    <div class="config-box reveal">
+      <div class="config-label">Piattaforme Social</div>
+      <div class="config-chips">
+        <div class="config-chip" data-price="200">📱 Instagram <span class="chip-price">+€200</span></div>
+        <div class="config-chip" data-price="200">🎵 TikTok <span class="chip-price">+€200</span></div>
+        <div class="config-chip" data-price="150">📘 Facebook <span class="chip-price">+€150</span></div>
+      </div>
+
+      <div class="config-label">Contenuti</div>
+      <div class="config-chips">
+        <div class="config-chip" data-price="80">🎬 +4 Reel/mese <span class="chip-price">+€80</span></div>
+        <div class="config-chip" data-price="60">📸 +4 Post/mese <span class="chip-price">+€60</span></div>
+        <div class="config-chip" data-price="100">📹 +2 Sessioni riprese <span class="chip-price">+€100</span></div>
+        <div class="config-chip" data-price="40">📝 Copywriting avanzato <span class="chip-price">+€40</span></div>
+      </div>
+
+      <div class="config-label">Sito Web</div>
+      <div class="config-chips">
+        <div class="config-chip" data-price="449">🌐 Sito Base (5 pagine) <span class="chip-price">+€449</span></div>
+        <div class="config-chip" data-price="649">⚡ Sito Professional <span class="chip-price">+€649</span></div>
+        <div class="config-chip" data-price="110">✨ Animazioni sito <span class="chip-price">+€110</span></div>
+      </div>
+
+      <div class="config-label">Advertising</div>
+      <div class="config-chips">
+        <div class="config-chip" data-price="150">🎯 Meta Ads (€150 budget) <span class="chip-price">+€150</span></div>
+        <div class="config-chip" data-price="200">📊 Meta Ads (€300 budget) <span class="chip-price">+€200</span></div>
+        <div class="config-chip" data-price="120">🎵 TikTok Ads <span class="chip-price">+€120</span></div>
+      </div>
+
+      <div class="config-total-row">
+        <div>
+          <div class="config-total-label">Il tuo pacchetto</div>
+          <div class="config-note">Base di partenza: €200/mese (setup + gestione)</div>
+        </div>
+        <div style="text-align:right">
+          <div class="config-total-amount"><span style="font-size:1.4rem">€</span><span id="config-total">200</span></div>
+          <div class="config-total-period">al mese</div>
+        </div>
+      </div>
+
+      <div class="config-cta">
+        <a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.5rem">Parliamone insieme →</a>
+        <p class="config-note" style="margin-top:1rem">Il prezzo finale viene confermato dopo la call — questo è un preventivo indicativo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="section-inner">
+    <div class="cta-banner reveal-scale">
+      <h2>Non sai da dove partire?</h2>
+      <p>Parliamone. Ti aiutiamo a capire cosa ti serve — senza vendere il superfluo.</p>
+      <div class="cta-btns">
+        <a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.5rem">Chiedi consiglio →</a>
+        <a href="https://wa.me/393479714112" target="_blank" class="btn btn-secondary" style="padding:1rem 2.5rem">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-text">Growly</div>
+        <p class="footer-tagline">Agenzia SMM a Bologna. Tre ragazzi, contenuti dal vivo, strategie su misura.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/growlyagency" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/393479714112" target="_blank" class="social-link" aria-label="WhatsApp">💬</a>
+          <a href="mailto:growly.bsn@gmail.com" class="social-link" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pagine</h4><ul class="footer-links"><li><a href="index.html">Servizi</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="prezzi.html">Prezzi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div>
+      <div class="footer-col"><h4>Servizi</h4><ul class="footer-links"><li><a href="index.html#servizi">Social Media</a></li><li><a href="index.html#servizi">Siti Web</a></li><li><a href="index.html#servizi">Meta Ads</a></li></ul></div>
+      <div class="footer-col"><h4>Contatti</h4><ul class="footer-links"><li><a href="mailto:growly.bsn@gmail.com">growly.bsn@gmail.com</a></li><li><a href="https://wa.me/393479714112">+39 347 971 4112</a></li><li>Bologna, Italia</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Growly. Tutti i diritti riservati.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div></div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

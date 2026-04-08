@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Growly — Agenzia Social Media Bologna | Contenuti dal vivo, strategie su misura</title>
+  <meta name="description" content="Growly: agenzia social media a Bologna. Veniamo da te, registriamo contenuti dal vivo, gestiamo i tuoi social e costruiamo siti web che convertono." />
+  <meta property="og:title" content="Growly — Agenzia SMM Bologna" />
+  <meta property="og:description" content="Contenuti dal vivo, strategie su misura, siti web dinamici per PMI italiane." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ═══════ HERO ═══════ */
+    .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .hero-glow-1 { position:absolute; width:600px; height:600px; border-radius:50%; background:var(--accent); filter:blur(180px); opacity:0.12; top:-150px; left:-100px; animation:heroFloat 12s ease-in-out infinite; }
+    .hero-glow-2 { position:absolute; width:400px; height:400px; border-radius:50%; background:var(--mint); filter:blur(150px); opacity:0.08; bottom:-100px; right:-50px; animation:heroFloat 12s ease-in-out infinite 4s; }
+    @keyframes heroFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(25px,-35px) scale(1.06)} 66%{transform:translate(-20px,20px) scale(0.95)} }
+    .hero-content { position:relative; z-index:2; max-width:920px; margin:0 auto; padding:8rem 2rem 5rem; text-align:center; }
+    .hero-badge { display:inline-flex; align-items:center; gap:0.6rem; background:rgba(108,63,255,0.08); border:1px solid rgba(108,63,255,0.2); border-radius:999px; padding:0.45rem 1.1rem; font-size:0.78rem; font-weight:600; color:var(--accent-light); margin-bottom:2.5rem; animation:fadeUp 0.7s ease both; }
+    .hero-badge .pulse-dot { width:7px; height:7px; background:var(--mint); border-radius:50%; animation:logoPulse 2s infinite; }
+    .hero-title { font-size:clamp(2.8rem,6.5vw,5.8rem); font-weight:800; letter-spacing:-0.04em; line-height:1.02; margin-bottom:1.75rem; animation:fadeUp 0.7s 0.1s ease both; }
+    .hero-title .line2 { background:linear-gradient(135deg,var(--mint) 0%,#7BFFEF 40%,var(--accent-light) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .typing-text { transition:opacity 0.4s ease, transform 0.4s ease; }
+    .hero-sub { font-size:1.18rem; color:var(--text-secondary); max-width:580px; margin:0 auto 2.5rem; line-height:1.75; animation:fadeUp 0.7s 0.2s ease both; }
+    .hero-ctas { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp 0.7s 0.3s ease both; }
+    .hero-ctas .btn { padding:1rem 2.2rem; font-size:1rem; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ═══════ STATS ═══════ */
+    .stats-strip { position:relative; z-index:2; background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3rem 2rem; }
+    .stats-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .stat-item { text-align:center; }
+    .stat-value { font-family:var(--font-display); font-size:2.8rem; font-weight:800; color:var(--mint); line-height:1; margin-bottom:0.4rem; }
+    .stat-label { color:var(--text-secondary); font-size:0.9rem; }
+    .stat-note { color:var(--text-muted); font-size:0.75rem; margin-top:0.2rem; font-style:italic; }
+
+    /* ═══════ SERVICES ═══════ */
+    .services-grid { display:grid; gap:2rem; }
+    .service-card { background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-xl); padding:3rem; position:relative; overflow:hidden; transition:all 0.4s ease; }
+    .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; opacity:0; transition:opacity 0.3s; }
+    .service-card:hover::before { opacity:1; }
+    .service-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+    .service-card.card-social::before { background:linear-gradient(90deg,var(--mint),#7BFFEF); }
+    .service-card.card-web::before { background:linear-gradient(90deg,var(--accent),var(--accent-light)); }
+    .service-card.card-ads::before { background:linear-gradient(90deg,#FF6B6B,#FFE66D); }
+    .service-card.featured { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .services-sub-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .service-icon-wrap { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; font-size:1.5rem; transition:transform 0.3s; }
+    .service-card.card-social .service-icon-wrap { background:rgba(0,245,196,0.1); }
+    .service-card.card-web .service-icon-wrap { background:rgba(108,63,255,0.1); }
+    .service-card.card-ads .service-icon-wrap { background:rgba(255,107,107,0.1); }
+    .service-card:hover .service-icon-wrap { transform:scale(1.1) rotate(-3deg); }
+    .service-tag { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mint); margin-bottom:0.75rem; }
+    .service-title { font-size:1.5rem; font-weight:800; margin-bottom:0.75rem; }
+    .service-desc { color:var(--text-secondary); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; }
+    .service-features-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+    .service-feat { display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--text-secondary); padding:0.35rem 0; }
+    .service-feat .icon { color:var(--mint); font-size:0.7rem; }
+    .service-visual { display:flex; align-items:center; justify-content:center; min-height:250px; background:rgba(10,10,20,0.4); border-radius:var(--radius-lg); border:1px solid var(--border); position:relative; overflow:hidden; }
+    .service-visual-text { font-family:var(--font-display); font-size:4.5rem; font-weight:800; opacity:0.04; background:linear-gradient(135deg,var(--mint),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+    /* ═══════ TOOLS — Visual Showcase ═══════ */
+    .tools-section { background:var(--bg-secondary); }
+    .tools-showcase { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; margin-bottom:3rem; }
+    .tools-showcase.reverse { direction:rtl; }
+    .tools-showcase.reverse > * { direction:ltr; }
+    .tools-text h3 { font-size:1.3rem; font-weight:800; margin-bottom:0.75rem; }
+    .tools-text p { color:var(--text-secondary); font-size:0.92rem; line-height:1.7; margin-bottom:1rem; }
+    .tools-badges { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .tool-badge-sm {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.4rem 0.9rem; border-radius:999px;
+      background:rgba(108,63,255,0.06); border:1px solid var(--border);
+      font-size:0.78rem; font-weight:600; color:var(--text-secondary);
+    }
+    /* Software mockup windows */
+    .tool-mockup {
+      background:var(--bg-card-solid); border:1px solid var(--border);
+      border-radius:var(--radius-lg); overflow:hidden;
+      transition:all var(--transition-smooth);
+    }
+    .tool-mockup:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:var(--shadow-md); }
+    .tool-mockup-bar {
+      display:flex; align-items:center; gap:0.4rem;
+      padding:0.75rem 1rem; background:rgba(0,0,0,0.3);
+      border-bottom:1px solid var(--border);
+    }
+    .tool-mockup-dot { width:8px; height:8px; border-radius:50%; }
+    .tool-mockup-dot.r { background:#FF5F57; }
+    .tool-mockup-dot.y { background:#FFBD2E; }
+    .tool-mockup-dot.g { background:#28CA41; }
+    .tool-mockup-title { margin-left:0.75rem; font-size:0.72rem; color:var(--text-muted); font-weight:600; }
+    .tool-mockup-body { padding:1.5rem; min-height:200px; position:relative; }
+    /* Abstract timeline bars for video editing */
+    .mock-timeline { display:flex; flex-direction:column; gap:0.5rem; }
+    .mock-track { height:20px; border-radius:4px; position:relative; overflow:hidden; }
+    .mock-clip { height:100%; border-radius:4px; position:absolute; }
+    /* Abstract code lines */
+    .mock-code { display:flex; flex-direction:column; gap:0.4rem; }
+    .mock-line { height:10px; border-radius:3px; opacity:0.6; }
+    /* Abstract design canvas */
+    .mock-canvas { display:grid; grid-template-columns:1fr 2fr; gap:1rem; height:180px; }
+    .mock-sidebar { display:flex; flex-direction:column; gap:0.5rem; }
+    .mock-swatch { width:100%; height:24px; border-radius:4px; }
+    .mock-artboard { border:1px solid var(--border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; }
+
+    .ai-workflow {
+      background:linear-gradient(135deg,rgba(108,63,255,0.06),rgba(0,245,196,0.04));
+      border:1px solid rgba(108,63,255,0.15);
+      border-radius:var(--radius-lg); padding:2.5rem; margin-top:1rem;
+      display:grid; grid-template-columns:auto 1fr; gap:1.75rem; align-items:start;
+    }
+    .ai-workflow-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--mint)); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+    .ai-workflow h4 { font-size:1.15rem; font-weight:800; margin-bottom:0.6rem; }
+    .ai-workflow p { color:var(--text-secondary); font-size:0.92rem; line-height:1.7; }
+    .ai-workflow .emphasis { color:var(--mint); font-weight:600; }
+
+    /* ═══════ METHOD ═══════ */
+    .method-timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; position:relative; }
+    .method-timeline::before { content:''; position:absolute; top:60px; left:12.5%; right:12.5%; height:2px; background:linear-gradient(90deg,var(--accent),var(--mint),var(--accent)); opacity:0.2; }
+    .method-card { background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2rem 1.5rem; text-align:center; position:relative; z-index:1; transition:all var(--transition-smooth); }
+    .method-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:var(--shadow-md); }
+    .method-number { font-family:var(--font-display); font-size:3.5rem; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--mint)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; opacity:0.2; line-height:1; margin-bottom:0.75rem; }
+    .method-icon { font-size:2rem; margin-bottom:1rem; }
+    .method-title { font-size:1.1rem; font-weight:700; margin-bottom:0.6rem; }
+    .method-desc { color:var(--text-secondary); font-size:0.85rem; line-height:1.65; }
+
+    @media (max-width:900px) {
+      .service-card.featured { grid-template-columns:1fr; }
+      .services-sub-grid { grid-template-columns:1fr; }
+      .service-features-grid { grid-template-columns:1fr; }
+      .tools-showcase { grid-template-columns:1fr; }
+      .tools-showcase.reverse { direction:ltr; }
+      .method-timeline { grid-template-columns:1fr 1fr; }
+      .method-timeline::before { display:none; }
+      .stats-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:640px) {
+      .hero-content { padding:7rem 1.5rem 4rem; }
+      .method-timeline { grid-template-columns:1fr; }
+      .stats-grid { grid-template-columns:1fr; }
+      .ai-workflow { grid-template-columns:1fr; text-align:center; }
+      .service-visual { min-height:180px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-loader"><div class="loader-logo">Growly</div></div>
+<div class="page-transition-overlay"></div>
+<canvas id="global-canvas"></canvas>
+
+<nav class="nav" id="main-nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="nav-logo-text">Growly</span><span class="nav-logo-dot"></span></a><div class="nav-links"><a href="index.html" class="nav-link active">Servizi</a><a href="chi-siamo.html" class="nav-link">Chi siamo</a><a href="prezzi.html" class="nav-link">Prezzi</a><a href="contatti.html" class="nav-link">Contatti</a></div><a href="contatti.html" class="btn nav-cta">Parliamoci →</a><button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="mobile-menu" id="mobile-menu"><a href="index.html" class="nav-link active" onclick="closeMobile()">Servizi</a><a href="chi-siamo.html" class="nav-link" onclick="closeMobile()">Chi siamo</a><a href="prezzi.html" class="nav-link" onclick="closeMobile()">Prezzi</a><a href="contatti.html" class="nav-link" onclick="closeMobile()">Contatti</a><a href="contatti.html" class="btn btn-primary" onclick="closeMobile()" style="margin-top:0.5rem;text-align:center">Parliamoci →</a></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow-1"></div><div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="pulse-dot"></span> Agenzia SMM · Bologna</div>
+    <h1 class="hero-title">Non ti serve un'agenzia.<br><span class="line2">Ti serve <span class="typing-text" data-words='["Growly.","un team.","una strategia.","Growly."]'>Growly.</span></span></h1>
+    <p class="hero-sub">Veniamo nella tua attività, registriamo contenuti veri, costruiamo strategie che funzionano e siti web che lasciano il segno. Tre ragazzi di Bologna, nessun template, solo roba che si misura.</p>
+    <div class="hero-ctas">
+      <a href="contatti.html" class="btn btn-primary">Facciamo due chiacchiere →</a>
+      <a href="#servizi" class="btn btn-secondary" onclick="event.preventDefault();smoothScrollTo('servizi')">Cosa facciamo</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-value" style="color:var(--accent-light)">Giorno 1</div><div class="stat-label">siamo appena partiti</div><div class="stat-note">e questo ci rende affamati</div></div>
+    <div class="stat-item reveal reveal-d1"><div class="stat-value" style="color:var(--mint)">∞</div><div class="stat-label">idee in coda</div><div class="stat-note">il bello di iniziare da zero</div></div>
+    <div class="stat-item reveal reveal-d2"><div class="stat-value" style="color:var(--mint)">100%</div><div class="stat-label">ossessione per i risultati</div><div class="stat-note">questa non cambia mai</div></div>
+  </div>
+</div>
+
+<!-- SERVIZI -->
+<section class="section" id="servizi">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Cosa facciamo</span>
+      <h2 class="section-title">Tre servizi.<br><span class="gradient">Un unico obiettivo: farti crescere.</span></h2>
+      <p class="section-sub">Niente pacchetti copia-incolla. Ogni strategia nasce dalla tua attività, dal tuo pubblico, dai tuoi numeri.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured card-social tilt-card reveal">
+        <div>
+          <div class="service-icon-wrap">📱</div>
+          <span class="service-tag">Il nostro core</span>
+          <div class="service-title">Social Media Management</div>
+          <p class="service-desc">Arriviamo da te con copioni pronti. Registriamo nella tua attività, montiamo tutto noi, scriviamo copy che suonano come te. Tu fai il tuo lavoro, noi facciamo crescere il tuo brand.</p>
+          <div class="service-features-grid">
+            <div class="service-feat"><span class="icon">✦</span> Script pronti prima delle riprese</div>
+            <div class="service-feat"><span class="icon">✦</span> Riprese dal vivo da te</div>
+            <div class="service-feat"><span class="icon">✦</span> Montaggio Reel e TikTok</div>
+            <div class="service-feat"><span class="icon">✦</span> Copy strategico</div>
+            <div class="service-feat"><span class="icon">✦</span> Gestione community</div>
+            <div class="service-feat"><span class="icon">✦</span> Report con numeri veri</div>
+          </div>
+        </div>
+        <div class="service-visual"><span class="service-visual-text">SOCIAL</span></div>
+      </div>
+      <div class="services-sub-grid">
+        <div class="service-card card-web tilt-card reveal reveal-d1">
+          <div class="service-icon-wrap">🌐</div>
+          <span class="service-tag">Web su misura</span>
+          <div class="service-title">Siti Web Custom</div>
+          <p class="service-desc">Zero WordPress. Codice scritto a mano, design per la tua attività, animazioni che fanno dire "wow". Veloci, responsive, costruiti per convertire.</p>
+          <div class="service-features-grid">
+            <div class="service-feat"><span class="icon">✦</span> Design personalizzato</div>
+            <div class="service-feat"><span class="icon">✦</span> Animazioni e interattività</div>
+            <div class="service-feat"><span class="icon">✦</span> SEO integrato</div>
+            <div class="service-feat"><span class="icon">✦</span> Mobile-first</div>
+          </div>
+        </div>
+        <div class="service-card card-ads tilt-card reveal reveal-d2">
+          <div class="service-icon-wrap">🎯</div>
+          <span class="service-tag">Amplificazione</span>
+          <div class="service-title">Meta & TikTok Ads</div>
+          <p class="service-desc">Budget piccoli, risultati concreti. Ogni campagna ha un obiettivo chiaro e un ROI che puoi controllare.</p>
+          <div class="service-features-grid">
+            <div class="service-feat"><span class="icon">✦</span> Targeting locale</div>
+            <div class="service-feat"><span class="icon">✦</span> A/B test costanti</div>
+            <div class="service-feat"><span class="icon">✦</span> ROI tracciato</div>
+            <div class="service-feat"><span class="icon">✦</span> Budget nei piani Growth</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════ STRUMENTI — Visual Showcase ═══════ -->
+<section class="section tools-section" id="strumenti">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Dietro le quinte</span>
+      <h2 class="section-title">Il valore che c'è <span class="gradient">dietro ogni contenuto.</span></h2>
+      <p class="section-sub">Lo stesso stack dei professionisti del settore. Ogni tool ha un ruolo preciso nel nostro workflow.</p>
+    </div>
+
+    <!-- Video & Editing -->
+    <div class="tools-showcase reveal">
+      <div class="tools-text">
+        <h3>Video & Editing professionale</h3>
+        <p>Ogni Reel e TikTok passa attraverso Premiere Pro per il montaggio, DaVinci Resolve per il color grading e After Effects per le motion graphics. Non usiamo CapCut — usiamo lo stesso software delle produzioni cinematografiche.</p>
+        <div class="tools-badges">
+          <span class="tool-badge-sm" style="color:#9999FF">Pr Premiere Pro</span>
+          <span class="tool-badge-sm" style="color:#E8503A">DV DaVinci Resolve</span>
+          <span class="tool-badge-sm" style="color:#D291FF">Ae After Effects</span>
+        </div>
+      </div>
+      <div class="tool-mockup">
+        <div class="tool-mockup-bar">
+          <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
+          <span class="tool-mockup-title">Premiere Pro — Montaggio Reel</span>
+        </div>
+        <div class="tool-mockup-body">
+          <div class="mock-timeline">
+            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
+              <div class="mock-clip" style="background:rgba(153,153,255,0.4);width:35%;left:5%"></div>
+              <div class="mock-clip" style="background:rgba(153,153,255,0.6);width:25%;left:42%"></div>
+              <div class="mock-clip" style="background:rgba(153,153,255,0.3);width:20%;left:70%"></div>
+            </div>
+            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
+              <div class="mock-clip" style="background:rgba(0,245,196,0.3);width:60%;left:10%"></div>
+              <div class="mock-clip" style="background:rgba(0,245,196,0.5);width:15%;left:75%"></div>
+            </div>
+            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
+              <div class="mock-clip" style="background:rgba(108,63,255,0.3);width:90%;left:5%"></div>
+            </div>
+            <div class="mock-track" style="background:rgba(0,0,0,0.15);width:100%;height:12px">
+              <div class="mock-clip" style="background:rgba(255,189,46,0.4);width:45%;left:20%"></div>
+            </div>
+            <div class="mock-track" style="background:rgba(0,0,0,0.15);width:100%;height:12px">
+              <div class="mock-clip" style="background:rgba(255,95,87,0.3);width:30%;left:5%"></div>
+              <div class="mock-clip" style="background:rgba(255,95,87,0.4);width:35%;left:50%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design -->
+    <div class="tools-showcase reverse reveal reveal-d1">
+      <div class="tools-text">
+        <h3>Design & Grafica curata</h3>
+        <p>Ogni immagine passa per Photoshop e Lightroom. I layout dei siti nascono su Figma. Non usiamo Canva — ogni contenuto ha un livello di cura che si vede e si sente.</p>
+        <div class="tools-badges">
+          <span class="tool-badge-sm" style="color:#31A8FF">Ps Photoshop</span>
+          <span class="tool-badge-sm" style="color:#31A8FF">Lr Lightroom</span>
+          <span class="tool-badge-sm" style="color:#A259FF">Fi Figma</span>
+        </div>
+      </div>
+      <div class="tool-mockup">
+        <div class="tool-mockup-bar">
+          <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
+          <span class="tool-mockup-title">Figma — UI Design</span>
+        </div>
+        <div class="tool-mockup-body">
+          <div class="mock-canvas">
+            <div class="mock-sidebar">
+              <div class="mock-swatch" style="background:var(--accent)"></div>
+              <div class="mock-swatch" style="background:var(--mint)"></div>
+              <div class="mock-swatch" style="background:var(--bg-elevated)"></div>
+              <div class="mock-swatch" style="background:var(--text-secondary)"></div>
+              <div class="mock-swatch" style="background:rgba(255,255,255,0.1);border:1px dashed var(--border)"></div>
+            </div>
+            <div class="mock-artboard">
+              <div style="width:80%;padding:1rem">
+                <div style="height:8px;width:40%;background:var(--accent);border-radius:4px;margin-bottom:0.5rem"></div>
+                <div style="height:6px;width:70%;background:var(--text-muted);border-radius:3px;margin-bottom:0.3rem;opacity:0.4"></div>
+                <div style="height:6px;width:55%;background:var(--text-muted);border-radius:3px;margin-bottom:1rem;opacity:0.3"></div>
+                <div style="height:24px;width:35%;background:var(--mint);border-radius:4px;opacity:0.6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Dev -->
+    <div class="tools-showcase reveal reveal-d2">
+      <div class="tools-text">
+        <h3>Sviluppo Web custom + AI</h3>
+        <p>Scriviamo codice HTML, CSS e JS a mano — niente page builder, niente template. L'AI ci accelera sulla ricerca e le bozze, ma ogni riga di codice è sotto il nostro controllo.</p>
+        <div class="tools-badges">
+          <span class="tool-badge-sm" style="color:var(--mint)">&lt;/&gt; HTML/CSS/JS</span>
+          <span class="tool-badge-sm" style="background:linear-gradient(135deg,var(--accent),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Integration</span>
+        </div>
+      </div>
+      <div class="tool-mockup">
+        <div class="tool-mockup-bar">
+          <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
+          <span class="tool-mockup-title">VS Code — index.html</span>
+        </div>
+        <div class="tool-mockup-body">
+          <div class="mock-code">
+            <div class="mock-line" style="width:30%;background:var(--accent);opacity:0.4"></div>
+            <div class="mock-line" style="width:55%;background:var(--mint);opacity:0.3;margin-left:1rem"></div>
+            <div class="mock-line" style="width:45%;background:var(--text-muted);opacity:0.25;margin-left:1rem"></div>
+            <div class="mock-line" style="width:65%;background:var(--accent-light);opacity:0.3;margin-left:2rem"></div>
+            <div class="mock-line" style="width:35%;background:var(--mint);opacity:0.25;margin-left:2rem"></div>
+            <div class="mock-line" style="width:50%;background:var(--text-muted);opacity:0.2;margin-left:2rem"></div>
+            <div class="mock-line" style="width:40%;background:var(--accent);opacity:0.3;margin-left:1rem"></div>
+            <div class="mock-line" style="width:25%;background:var(--accent);opacity:0.4"></div>
+            <div style="height:8px"></div>
+            <div class="mock-line" style="width:35%;background:var(--mint);opacity:0.35"></div>
+            <div class="mock-line" style="width:60%;background:var(--text-muted);opacity:0.2;margin-left:1rem"></div>
+            <div class="mock-line" style="width:70%;background:var(--accent-light);opacity:0.25;margin-left:1rem"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-workflow reveal">
+      <div class="ai-workflow-icon">🤖</div>
+      <div>
+        <h4>L'AI è il nostro copilota, non il pilota.</h4>
+        <p>La usiamo per <span class="emphasis">velocizzare ricerca, bozze e processi.</span> Ma ogni contenuto è pensato, controllato e finalizzato da noi. Le idee sono nostre — l'AI ci rende più veloci.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section class="section" id="metodo">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <span class="section-tag">Come lavoriamo</span>
+      <h2 class="section-title">Il metodo Growly</h2>
+      <p class="section-sub">Quattro step. Zero improvvisazione. Ogni fase ha un output che puoi toccare con mano.</p>
+    </div>
+    <div class="method-timeline">
+      <div class="method-card reveal"><div class="method-number">01</div><div class="method-icon">🔬</div><div class="method-title">Ti studiamo</div><div class="method-desc">Brand, competitor, pubblico. Capiamo chi compra da te, perché lo fa e dove passa il tempo online.</div></div>
+      <div class="method-card reveal reveal-d1"><div class="method-number">02</div><div class="method-icon">🧩</div><div class="method-title">Pianifichiamo</div><div class="method-desc">Obiettivi numerici, piano editoriale, KPI chiari. Se un contenuto non ha uno scopo, non lo pubblichiamo.</div></div>
+      <div class="method-card reveal reveal-d2"><div class="method-number">03</div><div class="method-icon">⚡</div><div class="method-title">Produciamo</div><div class="method-desc">Veniamo da te con copioni pronti. Registriamo, montiamo, pubblichiamo. Tu continui a lavorare.</div></div>
+      <div class="method-card reveal reveal-d3"><div class="method-number">04</div><div class="method-icon">📈</div><div class="method-title">Ottimizziamo</div><div class="method-desc">Leggiamo i dati, capiamo cosa funziona. Ogni mese meglio del precedente, in loop continuo.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="section-inner">
+    <div class="cta-banner reveal-scale">
+      <h2>Stanco di improvvisare<br>sui social?</h2>
+      <p>La prima call è gratuita. Nel peggiore dei casi esci con qualche idea utile.</p>
+      <div class="cta-btns">
+        <a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.5rem">Facciamo due chiacchiere →</a>
+        <a href="https://wa.me/393479714112" target="_blank" class="btn btn-secondary" style="padding:1rem 2.5rem">💬 Scrivici su WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-grid"><div><div class="footer-logo-text">Growly</div><p class="footer-tagline">Agenzia SMM a Bologna. Tre ragazzi, contenuti dal vivo, strategie su misura.</p><div class="footer-socials"><a href="https://instagram.com/growlyagency" target="_blank" class="social-link" aria-label="Instagram">📸</a><a href="https://wa.me/393479714112" target="_blank" class="social-link" aria-label="WhatsApp">💬</a><a href="mailto:growly.bsn@gmail.com" class="social-link" aria-label="Email">✉️</a></div></div><div class="footer-col"><h4>Pagine</h4><ul class="footer-links"><li><a href="index.html">Servizi</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="prezzi.html">Prezzi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div><div class="footer-col"><h4>Servizi</h4><ul class="footer-links"><li><a href="index.html#servizi">Social Media</a></li><li><a href="index.html#servizi">Siti Web</a></li><li><a href="index.html#servizi">Meta Ads</a></li></ul></div><div class="footer-col"><h4>Contatti</h4><ul class="footer-links"><li><a href="mailto:growly.bsn@gmail.com">growly.bsn@gmail.com</a></li><li><a href="https://wa.me/393479714112">+39 347 971 4112</a></li><li>Bologna, Italia</li></ul></div></div><div class="footer-bottom"><p>© 2025 Growly. Tutti i diritti riservati.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div></div></div></footer>
+<script src="main.js"></script>
+</body>
+</html>

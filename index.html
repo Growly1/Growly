@@ -94,7 +94,101 @@
     .tool-mockup-dot.y { background:#FFBD2E; }
     .tool-mockup-dot.g { background:#28CA41; }
     .tool-mockup-title { margin-left:0.75rem; font-size:0.72rem; color:var(--text-muted); font-weight:600; }
-    .tool-mockup-body { padding:1.5rem; min-height:200px; position:relative; }
+    .tool-mockup-body { padding:1.5rem; position:relative; }
+    .tool-mockup-body.has-image { padding:0; }
+
+    /* Platform icons row — Social card */
+    .platform-showcase { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.25rem; padding:2rem 1.5rem; width:100%; }
+    .platform-label { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); text-align:center; }
+    .platform-icons-row { display:flex; align-items:center; justify-content:center; gap:1.75rem; flex-wrap:wrap; }
+    .platform-icon-wrap { display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+    .platform-icon-wrap svg { filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4)); transition:transform 0.3s ease; }
+    .platform-icon-wrap:hover svg { transform:scale(1.12) translateY(-2px); }
+    .platform-name { font-size:0.72rem; font-weight:600; color:var(--text-muted); }
+
+    /* Mini browser mockup — Web card */
+    .web-browser-mockup { margin-top:1.5rem; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:rgba(10,10,20,0.5); }
+    .web-browser-bar { display:flex; align-items:center; gap:0.4rem; padding:0.55rem 0.75rem; background:rgba(0,0,0,0.3); border-bottom:1px solid var(--border); }
+    .web-browser-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .web-browser-url { margin-left:0.5rem; flex:1; height:16px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:3px; font-size:0.65rem; color:var(--text-muted); display:flex; align-items:center; padding:0 0.5rem; }
+    .web-code-snippet { padding:0.85rem 1rem; font-size:0.7rem; line-height:1.8; font-family:monospace; }
+    .wc-tag { color:#569CD6; }
+    .wc-attr { color:#9CDCFE; }
+    .wc-str { color:#CE9178; }
+    .wc-text { color:#D4D4D4; }
+    .wc-comment { color:#6A9955; font-style:italic; }
+
+    /* Ads performance chart — Ads card */
+    .ads-perf-visual { margin-top:1.5rem; border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; background:rgba(10,10,20,0.5); }
+    .ads-perf-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem; }
+    .ads-perf-label { font-size:0.72rem; color:var(--text-muted); font-weight:600; }
+    .ads-roi-badge { font-size:0.72rem; font-weight:800; color:#28CA41; background:rgba(40,202,65,0.1); border:1px solid rgba(40,202,65,0.25); border-radius:999px; padding:0.2rem 0.6rem; letter-spacing:0.04em; }
+    .ads-chart-bars { display:flex; align-items:flex-end; gap:4px; height:52px; }
+    .ads-bar { flex:1; border-radius:3px 3px 0 0; background:rgba(108,63,255,0.35); transition:background 0.3s; }
+    .ads-bar:last-child { background:linear-gradient(180deg,var(--mint),rgba(0,245,196,0.4)); }
+    .ads-perf-visual:hover .ads-bar { background:rgba(108,63,255,0.5); }
+    .ads-perf-visual:hover .ads-bar:last-child { background:linear-gradient(180deg,var(--mint),rgba(0,245,196,0.6)); }
+
+    /* Real image in tool mockup */
+    .tool-mockup-img { width:100%; display:block; border-radius:0 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px); }
+
+    /* Platform strip — Social card bottom */
+    .platform-strip { display:flex; align-items:center; gap:0.85rem; margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid var(--border); flex-wrap:wrap; }
+    .platform-strip-label { font-size:0.72rem; color:var(--text-muted); font-weight:600; letter-spacing:0.06em; text-transform:uppercase; flex-shrink:0; }
+    .platform-strip-logos { display:flex; align-items:center; gap:0.85rem; }
+    .plat-logo { width:22px; height:22px; object-fit:contain; opacity:0.8; transition:opacity 0.2s, transform 0.2s; flex-shrink:0; }
+    .plat-logo:hover { opacity:1; transform:scale(1.15); }
+    .plat-svg { width:22px; height:22px; opacity:0.8; transition:opacity 0.2s, transform 0.2s; flex-shrink:0; }
+    .plat-svg:hover { opacity:1; transform:scale(1.15); }
+
+    /* ═══════ CLIENT PROFILER ═══════ */
+    .profilo-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .profilo-card {
+      background:var(--bg-card-solid); border:1px solid var(--border);
+      border-radius:var(--radius-xl); padding:2rem;
+      display:flex; flex-direction:column; position:relative; overflow:hidden;
+      transition:all 0.4s ease;
+    }
+    .profilo-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; opacity:0; transition:opacity 0.3s; }
+    .profilo-card:hover::before { opacity:1; }
+    .profilo-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+    .profilo-card:nth-child(1)::before { background:linear-gradient(90deg,var(--mint),#7BFFEF); }
+    .profilo-card:nth-child(2)::before { background:linear-gradient(90deg,var(--accent),var(--accent-light)); }
+    .profilo-card:nth-child(3)::before { background:linear-gradient(90deg,#FFE66D,#FF6B6B); }
+    .profilo-card:nth-child(4)::before { background:linear-gradient(90deg,var(--mint),var(--accent)); }
+    .profilo-card-full { grid-column:1 / -1; }
+    .profilo-icon { font-size:2rem; margin-bottom:0.85rem; }
+    .profilo-label { font-size:1.1rem; font-weight:800; margin-bottom:0.5rem; }
+    .profilo-desc { color:var(--text-secondary); font-size:0.88rem; line-height:1.65; margin-bottom:1.25rem; }
+    .profilo-needs { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:1.75rem; flex:1; }
+    .profilo-card-full .profilo-needs { display:grid; grid-template-columns:1fr 1fr; gap:0.35rem 2rem; }
+    .profilo-need { display:flex; align-items:center; gap:0.5rem; font-size:0.83rem; color:var(--text-secondary); }
+    .profilo-need .pn-icon { color:var(--mint); font-size:0.6rem; flex-shrink:0; }
+    .btn-wa {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.75rem 1.4rem; background:rgba(37,211,102,0.08);
+      border:1px solid rgba(37,211,102,0.25); border-radius:999px;
+      color:#25D366; font-size:0.85rem; font-weight:600;
+      text-decoration:none; transition:all 0.3s; width:fit-content; margin-top:auto;
+    }
+    .btn-wa:hover { background:rgba(37,211,102,0.15); border-color:rgba(37,211,102,0.45); transform:translateY(-2px); }
+
+    /* Floating WhatsApp button */
+    .wa-float {
+      position:fixed; bottom:1.75rem; right:1.75rem;
+      width:54px; height:54px; background:#25D366; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 20px rgba(37,211,102,0.45); z-index:200;
+      text-decoration:none; transition:transform 0.3s, box-shadow 0.3s;
+    }
+    .wa-float:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(37,211,102,0.6); }
+    .wa-float svg { width:28px; height:28px; }
+
+    @media (max-width:900px) {
+      .profilo-grid { grid-template-columns:1fr; }
+      .profilo-card-full { grid-column:1; }
+      .profilo-card-full .profilo-needs { grid-template-columns:1fr; }
+    }
     /* Abstract timeline bars for video editing */
     .mock-timeline { display:flex; flex-direction:column; gap:0.5rem; }
     .mock-track { height:20px; border-radius:4px; position:relative; overflow:hidden; }
@@ -108,16 +202,25 @@
     .mock-swatch { width:100%; height:24px; border-radius:4px; }
     .mock-artboard { border:1px solid var(--border); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; }
 
-    .ai-workflow {
-      background:linear-gradient(135deg,rgba(108,63,255,0.06),rgba(0,245,196,0.04));
-      border:1px solid rgba(108,63,255,0.15);
-      border-radius:var(--radius-lg); padding:2.5rem; margin-top:1rem;
-      display:grid; grid-template-columns:auto 1fr; gap:1.75rem; align-items:start;
-    }
-    .ai-workflow-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--mint)); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
-    .ai-workflow h4 { font-size:1.15rem; font-weight:800; margin-bottom:0.6rem; }
-    .ai-workflow p { color:var(--text-secondary); font-size:0.92rem; line-height:1.7; }
-    .ai-workflow .emphasis { color:var(--mint); font-weight:600; }
+    /* Video tools pair — 2 mockup affiancati */
+    .video-tools-pair { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+
+    /* AI section espansa */
+    .ai-expanded { background:linear-gradient(135deg,rgba(108,63,255,0.06),rgba(0,245,196,0.04)); border:1px solid rgba(108,63,255,0.15); border-radius:var(--radius-lg); padding:2.5rem; margin-top:1rem; }
+    .ai-expanded-header { display:grid; grid-template-columns:auto 1fr; gap:1.75rem; align-items:start; margin-bottom:2rem; }
+    .ai-expanded-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--mint)); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+    .ai-expanded-header h3 { font-size:1.2rem; font-weight:800; margin-bottom:0.6rem; line-height:1.3; }
+    .ai-expanded-header p { color:var(--text-secondary); font-size:0.92rem; line-height:1.7; }
+    .ai-expanded-header p em { color:var(--mint); font-style:normal; font-weight:600; }
+    .ai-use-cases { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.75rem; }
+    .ai-use-case { background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:var(--radius-md,10px); padding:1.25rem; transition:border-color 0.3s; }
+    .ai-use-case:hover { border-color:var(--border-hover); }
+    .ai-use-case.ai-uc-limit { border-color:rgba(255,107,107,0.2); background:rgba(255,107,107,0.04); }
+    .ai-uc-icon { font-size:1.4rem; margin-bottom:0.6rem; }
+    .ai-uc-title { font-size:0.9rem; font-weight:700; margin-bottom:0.4rem; }
+    .ai-uc-desc { font-size:0.8rem; color:var(--text-secondary); line-height:1.6; }
+    .ai-bottom-line { border-top:1px solid var(--border); padding-top:1.25rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.75; }
+    .ai-bl-accent { color:var(--mint); font-weight:700; }
 
     /* ═══════ METHOD ═══════ */
     .method-timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; position:relative; }
@@ -138,12 +241,15 @@
       .method-timeline { grid-template-columns:1fr 1fr; }
       .method-timeline::before { display:none; }
       .stats-grid { grid-template-columns:1fr 1fr; }
+      .ai-use-cases { grid-template-columns:1fr 1fr; }
+      .ai-expanded-header { grid-template-columns:1fr; }
+      .video-tools-pair { grid-template-columns:1fr; }
     }
     @media (max-width:640px) {
       .hero-content { padding:7rem 1.5rem 4rem; }
       .method-timeline { grid-template-columns:1fr; }
       .stats-grid { grid-template-columns:1fr; }
-      .ai-workflow { grid-template-columns:1fr; text-align:center; }
+      .ai-use-cases { grid-template-columns:1fr; }
       .service-visual { min-height:180px; }
     }
   </style>
@@ -189,22 +295,33 @@
       <p class="section-sub">Niente pacchetti copia-incolla. Ogni strategia nasce dalla tua attività, dal tuo pubblico, dai tuoi numeri.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card featured card-social tilt-card reveal">
-        <div>
-          <div class="service-icon-wrap">📱</div>
-          <span class="service-tag">Il nostro core</span>
-          <div class="service-title">Social Media Management</div>
-          <p class="service-desc">Arriviamo da te con copioni pronti. Registriamo nella tua attività, montiamo tutto noi, scriviamo copy che suonano come te. Tu fai il tuo lavoro, noi facciamo crescere il tuo brand.</p>
-          <div class="service-features-grid">
-            <div class="service-feat"><span class="icon">✦</span> Script pronti prima delle riprese</div>
-            <div class="service-feat"><span class="icon">✦</span> Riprese dal vivo da te</div>
-            <div class="service-feat"><span class="icon">✦</span> Montaggio Reel e TikTok</div>
-            <div class="service-feat"><span class="icon">✦</span> Copy strategico</div>
-            <div class="service-feat"><span class="icon">✦</span> Gestione community</div>
-            <div class="service-feat"><span class="icon">✦</span> Report con numeri veri</div>
+      <div class="service-card card-social tilt-card reveal">
+        <div class="service-icon-wrap">📱</div>
+        <span class="service-tag">Il nostro core</span>
+        <div class="service-title">Social Media Management</div>
+        <p class="service-desc">Arriviamo da te con copioni pronti. Registriamo nella tua attività, montiamo tutto noi, scriviamo copy che suonano come te. Tu fai il tuo lavoro, noi facciamo crescere il tuo brand.</p>
+        <div class="service-features-grid">
+          <div class="service-feat"><span class="icon">✦</span> Script pronti prima delle riprese</div>
+          <div class="service-feat"><span class="icon">✦</span> Riprese dal vivo da te</div>
+          <div class="service-feat"><span class="icon">✦</span> Montaggio Reel e TikTok</div>
+          <div class="service-feat"><span class="icon">✦</span> Copy strategico</div>
+          <div class="service-feat"><span class="icon">✦</span> Gestione community</div>
+          <div class="service-feat"><span class="icon">✦</span> Report con numeri veri</div>
+        </div>
+        <div class="platform-strip">
+          <span class="platform-strip-label">Su</span>
+          <div class="platform-strip-logos">
+            <img src="assets/images/Instagram_logo.png" alt="Instagram" class="plat-logo" />
+            <!-- TikTok -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="plat-svg" aria-label="TikTok" fill="currentColor" style="color:#fff">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.73a4.85 4.85 0 0 1-1.01-.04z"/>
+            </svg>
+            <!-- Facebook -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="plat-svg" aria-label="Facebook">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+            </svg>
           </div>
         </div>
-        <div class="service-visual"><span class="service-visual-text">SOCIAL</span></div>
       </div>
       <div class="services-sub-grid">
         <div class="service-card card-web tilt-card reveal reveal-d1">
@@ -218,6 +335,21 @@
             <div class="service-feat"><span class="icon">✦</span> SEO integrato</div>
             <div class="service-feat"><span class="icon">✦</span> Mobile-first</div>
           </div>
+          <div class="web-browser-mockup">
+            <div class="web-browser-bar">
+              <div class="web-browser-dot" style="background:#FF5F57"></div>
+              <div class="web-browser-dot" style="background:#FFBD2E"></div>
+              <div class="web-browser-dot" style="background:#28CA41"></div>
+              <div class="web-browser-url">tua-attivita.it</div>
+            </div>
+            <div class="web-code-snippet">
+              <span class="wc-comment">&lt;!-- fatto a mano, non template --&gt;</span><br>
+              <span class="wc-tag">&lt;section</span> <span class="wc-attr">class</span>=<span class="wc-str">"hero"</span><span class="wc-tag">&gt;</span><br>
+              &nbsp;&nbsp;<span class="wc-tag">&lt;h1&gt;</span><span class="wc-text">Il tuo brand cresce qui</span><span class="wc-tag">&lt;/h1&gt;</span><br>
+              &nbsp;&nbsp;<span class="wc-tag">&lt;a</span> <span class="wc-attr">href</span>=<span class="wc-str">"#contatti"</span> <span class="wc-attr">class</span>=<span class="wc-str">"cta"</span><span class="wc-tag">&gt;</span><span class="wc-text">Parliamoci →</span><span class="wc-tag">&lt;/a&gt;</span><br>
+              <span class="wc-tag">&lt;/section&gt;</span>
+            </div>
+          </div>
         </div>
         <div class="service-card card-ads tilt-card reveal reveal-d2">
           <div class="service-icon-wrap">🎯</div>
@@ -229,6 +361,23 @@
             <div class="service-feat"><span class="icon">✦</span> A/B test costanti</div>
             <div class="service-feat"><span class="icon">✦</span> ROI tracciato</div>
             <div class="service-feat"><span class="icon">✦</span> Budget nei piani Growth</div>
+          </div>
+          <div class="ads-perf-visual">
+            <div class="ads-perf-header">
+              <span class="ads-perf-label">Andamento campagna</span>
+              <span class="ads-roi-badge">↑ ROI +247%</span>
+            </div>
+            <div class="ads-chart-bars">
+              <div class="ads-bar" style="height:30%"></div>
+              <div class="ads-bar" style="height:42%"></div>
+              <div class="ads-bar" style="height:38%"></div>
+              <div class="ads-bar" style="height:58%"></div>
+              <div class="ads-bar" style="height:52%"></div>
+              <div class="ads-bar" style="height:72%"></div>
+              <div class="ads-bar" style="height:68%"></div>
+              <div class="ads-bar" style="height:88%"></div>
+              <div class="ads-bar" style="height:100%"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -258,32 +407,23 @@
           <span class="tool-badge-sm" style="color:#D291FF">Ae After Effects</span>
         </div>
       </div>
-      <div class="tool-mockup">
-        <div class="tool-mockup-bar">
-          <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
-          <span class="tool-mockup-title">Premiere Pro — Montaggio Reel</span>
+      <div class="video-tools-pair">
+        <div class="tool-mockup">
+          <div class="tool-mockup-bar">
+            <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
+            <span class="tool-mockup-title">DaVinci — Color</span>
+          </div>
+          <div class="tool-mockup-body has-image">
+            <img src="assets/images/dav%20res%20color%20correction.jpg" alt="DaVinci Resolve color grading - color correction professionale per Reel e TikTok" loading="lazy" class="tool-mockup-img" />
+          </div>
         </div>
-        <div class="tool-mockup-body">
-          <div class="mock-timeline">
-            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
-              <div class="mock-clip" style="background:rgba(153,153,255,0.4);width:35%;left:5%"></div>
-              <div class="mock-clip" style="background:rgba(153,153,255,0.6);width:25%;left:42%"></div>
-              <div class="mock-clip" style="background:rgba(153,153,255,0.3);width:20%;left:70%"></div>
-            </div>
-            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
-              <div class="mock-clip" style="background:rgba(0,245,196,0.3);width:60%;left:10%"></div>
-              <div class="mock-clip" style="background:rgba(0,245,196,0.5);width:15%;left:75%"></div>
-            </div>
-            <div class="mock-track" style="background:rgba(0,0,0,0.2);width:100%">
-              <div class="mock-clip" style="background:rgba(108,63,255,0.3);width:90%;left:5%"></div>
-            </div>
-            <div class="mock-track" style="background:rgba(0,0,0,0.15);width:100%;height:12px">
-              <div class="mock-clip" style="background:rgba(255,189,46,0.4);width:45%;left:20%"></div>
-            </div>
-            <div class="mock-track" style="background:rgba(0,0,0,0.15);width:100%;height:12px">
-              <div class="mock-clip" style="background:rgba(255,95,87,0.3);width:30%;left:5%"></div>
-              <div class="mock-clip" style="background:rgba(255,95,87,0.4);width:35%;left:50%"></div>
-            </div>
+        <div class="tool-mockup">
+          <div class="tool-mockup-bar">
+            <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
+            <span class="tool-mockup-title">Premiere — Timeline</span>
+          </div>
+          <div class="tool-mockup-body has-image">
+            <img src="assets/images/Screenshot%202026-04-10%20alle%2021.20.28.png" alt="Premiere Pro timeline - montaggio professionale Reel e contenuti social" loading="lazy" class="tool-mockup-img" />
           </div>
         </div>
       </div>
@@ -303,26 +443,10 @@
       <div class="tool-mockup">
         <div class="tool-mockup-bar">
           <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
-          <span class="tool-mockup-title">Figma — UI Design</span>
+          <span class="tool-mockup-title">Adobe Illustrator — Progetto grafico</span>
         </div>
-        <div class="tool-mockup-body">
-          <div class="mock-canvas">
-            <div class="mock-sidebar">
-              <div class="mock-swatch" style="background:var(--accent)"></div>
-              <div class="mock-swatch" style="background:var(--mint)"></div>
-              <div class="mock-swatch" style="background:var(--bg-elevated)"></div>
-              <div class="mock-swatch" style="background:var(--text-secondary)"></div>
-              <div class="mock-swatch" style="background:rgba(255,255,255,0.1);border:1px dashed var(--border)"></div>
-            </div>
-            <div class="mock-artboard">
-              <div style="width:80%;padding:1rem">
-                <div style="height:8px;width:40%;background:var(--accent);border-radius:4px;margin-bottom:0.5rem"></div>
-                <div style="height:6px;width:70%;background:var(--text-muted);border-radius:3px;margin-bottom:0.3rem;opacity:0.4"></div>
-                <div style="height:6px;width:55%;background:var(--text-muted);border-radius:3px;margin-bottom:1rem;opacity:0.3"></div>
-                <div style="height:24px;width:35%;background:var(--mint);border-radius:4px;opacity:0.6"></div>
-              </div>
-            </div>
-          </div>
+        <div class="tool-mockup-body has-image">
+          <img src="assets/images/illustrator.webp" alt="Adobe Illustrator - progetto grafico per contenuti social e branding" loading="lazy" class="tool-mockup-img" />
         </div>
       </div>
     </div>
@@ -342,30 +466,57 @@
           <div class="tool-mockup-dot r"></div><div class="tool-mockup-dot y"></div><div class="tool-mockup-dot g"></div>
           <span class="tool-mockup-title">VS Code — index.html</span>
         </div>
-        <div class="tool-mockup-body">
-          <div class="mock-code">
-            <div class="mock-line" style="width:30%;background:var(--accent);opacity:0.4"></div>
-            <div class="mock-line" style="width:55%;background:var(--mint);opacity:0.3;margin-left:1rem"></div>
-            <div class="mock-line" style="width:45%;background:var(--text-muted);opacity:0.25;margin-left:1rem"></div>
-            <div class="mock-line" style="width:65%;background:var(--accent-light);opacity:0.3;margin-left:2rem"></div>
-            <div class="mock-line" style="width:35%;background:var(--mint);opacity:0.25;margin-left:2rem"></div>
-            <div class="mock-line" style="width:50%;background:var(--text-muted);opacity:0.2;margin-left:2rem"></div>
-            <div class="mock-line" style="width:40%;background:var(--accent);opacity:0.3;margin-left:1rem"></div>
-            <div class="mock-line" style="width:25%;background:var(--accent);opacity:0.4"></div>
-            <div style="height:8px"></div>
-            <div class="mock-line" style="width:35%;background:var(--mint);opacity:0.35"></div>
-            <div class="mock-line" style="width:60%;background:var(--text-muted);opacity:0.2;margin-left:1rem"></div>
-            <div class="mock-line" style="width:70%;background:var(--accent-light);opacity:0.25;margin-left:1rem"></div>
+        <div class="tool-mockup-body" style="background:#1E1E2E;padding:1.1rem 1.25rem">
+          <div style="font-family:'Courier New',Courier,monospace;font-size:0.72rem;line-height:1.9;color:#CDD6F4">
+            <div><span style="color:#6C7086">/* growly — fatto a mano, zero template */</span></div>
+            <div style="height:0.3rem"></div>
+            <div><span style="color:#CBA6F7">@keyframes</span> <span style="color:#89B4FA">fadeUp</span> <span style="color:#CDD6F4">{</span></div>
+            <div style="padding-left:1.2rem"><span style="color:#A6E3A1">from</span> <span style="color:#CDD6F4">{</span> <span style="color:#89DCEB">opacity</span><span style="color:#CDD6F4">:</span><span style="color:#FAB387">0</span><span style="color:#CDD6F4">;</span> <span style="color:#89DCEB">transform</span><span style="color:#CDD6F4">:</span><span style="color:#A6E3A1">translateY</span><span style="color:#CDD6F4">(</span><span style="color:#FAB387">30px</span><span style="color:#CDD6F4">)</span> <span style="color:#CDD6F4">}</span></div>
+            <div style="padding-left:1.2rem"><span style="color:#A6E3A1">to</span> <span style="color:#CDD6F4">{</span> <span style="color:#89DCEB">opacity</span><span style="color:#CDD6F4">:</span><span style="color:#FAB387">1</span><span style="color:#CDD6F4">;</span> <span style="color:#89DCEB">transform</span><span style="color:#CDD6F4">:</span><span style="color:#A6E3A1">translateY</span><span style="color:#CDD6F4">(</span><span style="color:#FAB387">0</span><span style="color:#CDD6F4">)</span> <span style="color:#CDD6F4">}</span></div>
+            <div><span style="color:#CDD6F4">}</span></div>
+            <div style="height:0.3rem"></div>
+            <div><span style="color:#CBA6F7">.hero</span> <span style="color:#CDD6F4">{</span></div>
+            <div style="padding-left:1.2rem"><span style="color:#89DCEB">background</span><span style="color:#CDD6F4">:</span> <span style="color:#A6E3A1">var</span><span style="color:#CDD6F4">(</span><span style="color:#FAB387">--bg</span><span style="color:#CDD6F4">);</span></div>
+            <div style="padding-left:1.2rem"><span style="color:#89DCEB">animation</span><span style="color:#CDD6F4">:</span> <span style="color:#A6E3A1">fadeUp</span> <span style="color:#FAB387">0.7s</span> <span style="color:#A6E3A1">ease</span> <span style="color:#A6E3A1">both</span><span style="color:#CDD6F4">;</span></div>
+            <div style="padding-left:1.2rem"><span style="color:#89DCEB">min-height</span><span style="color:#CDD6F4">:</span> <span style="color:#FAB387">100vh</span><span style="color:#CDD6F4">;</span></div>
+            <div><span style="color:#CDD6F4">}</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="ai-workflow reveal">
-      <div class="ai-workflow-icon">🤖</div>
-      <div>
-        <h4>L'AI è il nostro copilota, non il pilota.</h4>
-        <p>La usiamo per <span class="emphasis">velocizzare ricerca, bozze e processi.</span> Ma ogni contenuto è pensato, controllato e finalizzato da noi. Le idee sono nostre — l'AI ci rende più veloci.</p>
+    <div class="ai-expanded reveal">
+      <div class="ai-expanded-header">
+        <div class="ai-expanded-icon">⚡</div>
+        <div>
+          <h3>L'AI in mani sbagliate produce rumore. In mani nostre, produce vantaggio.</h3>
+          <p>Tutti oggi "usano l'AI". Il punto non è averla — è sapere <em>quando</em> usarla, <em>come</em> guidarla e, soprattutto, <em>quando non farlo</em>. Quella distinzione è la differenza tra un contenuto generico e uno che converte.</p>
+        </div>
+      </div>
+      <div class="ai-use-cases">
+        <div class="ai-use-case">
+          <div class="ai-uc-icon">✍️</div>
+          <div class="ai-uc-title">Script & Copy</div>
+          <div class="ai-uc-desc">L'AI abbozza la struttura, noi riscriviamo con la tua voce. Il risultato finale suona come te — non come ChatGPT.</div>
+        </div>
+        <div class="ai-use-case">
+          <div class="ai-uc-icon">🔍</div>
+          <div class="ai-uc-title">Ricerca & Trend</div>
+          <div class="ai-uc-desc">Analisi di competitor, trend di settore, angoli narrativi in pochi minuti. Arrivare preparati alle riprese fa la differenza sul risultato.</div>
+        </div>
+        <div class="ai-use-case">
+          <div class="ai-uc-icon">⚙️</div>
+          <div class="ai-uc-title">Processi ripetitivi</div>
+          <div class="ai-uc-desc">Caption varianti, hashtag ottimizzati, scheduling automatizzato — così il nostro tempo lo investiamo dove conta: la qualità creativa.</div>
+        </div>
+        <div class="ai-use-case ai-uc-limit">
+          <div class="ai-uc-icon">🚫</div>
+          <div class="ai-uc-title">Quando non usarla</div>
+          <div class="ai-uc-desc">Creatività originale, tono di voce del brand, relazione con la community. Queste cose non si delegano mai a una macchina.</div>
+        </div>
+      </div>
+      <div class="ai-bottom-line">
+        <span class="ai-bl-accent">La differenza non è avere accesso all'AI.</span> È avere la competenza per capire dove aggiunge valore reale e dove, invece, distrugge l'identità del tuo brand. Noi quella linea la conosciamo bene — e non la superiamo mai.
       </div>
     </div>
   </div>
@@ -388,6 +539,90 @@
   </div>
 </section>
 
+<div class="section-divider"></div>
+
+<!-- PROFILO CLIENTE -->
+<section class="section" id="profilo">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Trovati</span>
+      <h2 class="section-title">Dimmi chi sei,<br><span class="gradient">ti diciamo cosa ti serve.</span></h2>
+      <p class="section-sub">Ogni attività ha bisogni diversi. Riconosci la tua situazione — e capisci già prima della call esattamente da dove partire.</p>
+    </div>
+    <div class="profilo-grid">
+
+      <!-- Bar & Ristoranti -->
+      <div class="profilo-card reveal">
+        <div class="profilo-icon">🍕</div>
+        <div class="profilo-label">Bar, Ristoranti & Locali</div>
+        <div class="profilo-desc">Hai un locale fisico e vuoi che la gente ti trovi, ci venga, e torni. I social devono portare persone fisiche dentro la porta.</div>
+        <div class="profilo-needs">
+          <div class="profilo-need"><span class="pn-icon">✦</span> Instagram + TikTok dal locale</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Reel di piatti, atmosfera, team</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Meta Ads con targeting locale</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Crescita organica + sponsorizzata</div>
+        </div>
+        <a href="https://wa.me/393479714112?text=Ciao%20Growly!%20Ho%20un%20locale%20e%20vorrei%20capire%20cosa%20mi%20serve." target="_blank" rel="noopener" class="btn-wa">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Parliamoci su WhatsApp
+        </a>
+      </div>
+
+      <!-- Shop & E-commerce -->
+      <div class="profilo-card reveal reveal-d1">
+        <div class="profilo-icon">🛍️</div>
+        <div class="profilo-label">Shop, Negozi & E-commerce</div>
+        <div class="profilo-desc">Vendi prodotti e vuoi che i social diventino un canale di vendita reale, non solo vetrina.</div>
+        <div class="profilo-needs">
+          <div class="profilo-need"><span class="pn-icon">✦</span> Social con contenuti prodotto</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Sito web custom che converte</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Meta + TikTok Ads performance</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Strategia vendite online completa</div>
+        </div>
+        <a href="https://wa.me/393479714112?text=Ciao%20Growly!%20Ho%20un%20negozio%20o%20e-commerce%20e%20vorrei%20capire%20cosa%20mi%20serve." target="_blank" rel="noopener" class="btn-wa">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Parliamoci su WhatsApp
+        </a>
+      </div>
+
+      <!-- Professionisti -->
+      <div class="profilo-card reveal reveal-d2">
+        <div class="profilo-icon">💼</div>
+        <div class="profilo-label">Professionisti & Studi</div>
+        <div class="profilo-desc">Avvocato, dentista, architetto, coach — il tuo nome deve valere qualcosa online. Il sito e i social sono il tuo primo biglietto da visita.</div>
+        <div class="profilo-needs">
+          <div class="profilo-need"><span class="pn-icon">✦</span> Sito web professionale su misura</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Personal brand su Instagram</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Contenuti di expertise e autorevolezza</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Presenza che si vede e si sente</div>
+        </div>
+        <a href="https://wa.me/393479714112?text=Ciao%20Growly!%20Sono%20un%20professionista%20e%20vorrei%20capire%20cosa%20mi%20serve." target="_blank" rel="noopener" class="btn-wa">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Parliamoci su WhatsApp
+        </a>
+      </div>
+
+      <!-- Brand / Startup — full width -->
+      <div class="profilo-card profilo-card-full reveal reveal-d3">
+        <div class="profilo-icon">🚀</div>
+        <div class="profilo-label">Brand in crescita & Startup</div>
+        <div class="profilo-desc">Stai costruendo qualcosa di nuovo. Hai bisogno di tutto — e che sia fatto bene fin dal giorno uno, perché la prima impressione non si ripete.</div>
+        <div class="profilo-needs">
+          <div class="profilo-need"><span class="pn-icon">✦</span> Social su più piattaforme</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Sito web che impressiona al primo click</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Meta + TikTok Ads per crescere veloce</div>
+          <div class="profilo-need"><span class="pn-icon">✦</span> Strategia completa dalla A alla Z</div>
+        </div>
+        <a href="https://wa.me/393479714112?text=Ciao%20Growly!%20Sto%20costruendo%20un%20brand%20o%20startup%20e%20ho%20bisogno%20di%20tutto." target="_blank" rel="noopener" class="btn-wa">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Parliamoci su WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="section cta-section">
   <div class="section-inner">
@@ -403,6 +638,9 @@
 </section>
 
 <footer class="footer"><div class="footer-inner"><div class="footer-grid"><div><div class="footer-logo-text">Growly</div><p class="footer-tagline">Agenzia SMM a Bologna. Tre ragazzi, contenuti dal vivo, strategie su misura.</p><div class="footer-socials"><a href="https://instagram.com/growlyagency" target="_blank" class="social-link" aria-label="Instagram">📸</a><a href="https://wa.me/393479714112" target="_blank" class="social-link" aria-label="WhatsApp">💬</a><a href="mailto:growly.bsn@gmail.com" class="social-link" aria-label="Email">✉️</a></div></div><div class="footer-col"><h4>Pagine</h4><ul class="footer-links"><li><a href="index.html">Servizi</a></li><li><a href="chi-siamo.html">Chi siamo</a></li><li><a href="prezzi.html">Prezzi</a></li><li><a href="contatti.html">Contatti</a></li></ul></div><div class="footer-col"><h4>Servizi</h4><ul class="footer-links"><li><a href="index.html#servizi">Social Media</a></li><li><a href="index.html#servizi">Siti Web</a></li><li><a href="index.html#servizi">Meta Ads</a></li></ul></div><div class="footer-col"><h4>Contatti</h4><ul class="footer-links"><li><a href="mailto:growly.bsn@gmail.com">growly.bsn@gmail.com</a></li><li><a href="https://wa.me/393479714112">+39 347 971 4112</a></li><li>Bologna, Italia</li></ul></div></div><div class="footer-bottom"><p>© 2025 Growly. Tutti i diritti riservati.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div></div></div></footer>
+<a href="https://wa.me/393479714112" target="_blank" rel="noopener" class="wa-float" aria-label="Scrivici su WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
 <script src="main.js"></script>
 </body>
 </html>

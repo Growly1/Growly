@@ -31,12 +31,14 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 
     /* ═══════ STATS ═══════ */
-    .stats-strip { position:relative; z-index:2; background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3rem 2rem; }
-    .stats-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-    .stat-item { text-align:center; }
-    .stat-value { font-family:var(--font-display); font-size:2.8rem; font-weight:800; color:var(--mint); line-height:1; margin-bottom:0.4rem; }
-    .stat-label { color:var(--text-secondary); font-size:0.9rem; }
-    .stat-note { color:var(--text-muted); font-size:0.75rem; margin-top:0.2rem; font-style:italic; }
+    .stats-strip { position:relative; z-index:2; background:var(--bg-secondary); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3.25rem 2rem; overflow:hidden; }
+    .stats-strip::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 100% at 50% 50%, rgba(0,245,196,0.04), transparent); pointer-events:none; }
+    .stats-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; position:relative; }
+    .stat-item { text-align:center; padding:0.5rem 1rem; position:relative; }
+    .stat-item:not(:last-child)::after { content:''; position:absolute; right:0; top:15%; bottom:15%; width:1px; background:linear-gradient(180deg, transparent, var(--border), transparent); }
+    .stat-value { font-family:var(--font-display); font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; line-height:1; margin-bottom:0.45rem; letter-spacing:-0.03em; }
+    .stat-label { color:var(--text-primary); font-size:0.9rem; font-weight:600; margin-bottom:0.2rem; }
+    .stat-note { color:var(--text-muted); font-size:0.75rem; font-style:italic; line-height:1.5; }
 
     /* ═══════ SERVICES ═══════ */
     .services-grid { display:grid; gap:2rem; }
@@ -60,8 +62,6 @@
     .service-features-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
     .service-feat { display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--text-secondary); padding:0.35rem 0; }
     .service-feat .icon { color:var(--mint); font-size:0.7rem; }
-    .service-visual { display:flex; align-items:center; justify-content:center; min-height:250px; background:rgba(10,10,20,0.4); border-radius:var(--radius-lg); border:1px solid var(--border); position:relative; overflow:hidden; }
-    .service-visual-text { font-family:var(--font-display); font-size:4.5rem; font-weight:800; opacity:0.04; background:linear-gradient(135deg,var(--mint),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
     /* ═══════ TOOLS — Visual Showcase ═══════ */
     .tools-section { background:var(--bg-secondary); }
@@ -270,7 +270,6 @@
       .section-inner { padding:0 1rem; }
       .method-timeline { grid-template-columns:1fr; }
       .stats-grid { grid-template-columns:1fr; }
-      .service-visual { min-height:180px; }
       .platform-strip { flex-wrap:wrap; }
       .ai-v2 { padding:1.75rem 1.25rem; }
       .ai-v2-col { padding:1.5rem 1.25rem; }
@@ -284,7 +283,7 @@
       p, .service-desc, .profilo-desc { line-height:1.7; }
       .method-card { padding:1.5rem 1.25rem; }
       .service-card { padding:1.75rem 1.25rem; }
-      .presence-num { font-size:4rem; }
+      .presenza-num { font-size:4rem; }
     }
   </style>
 </head>
@@ -314,9 +313,21 @@
 <!-- STATS -->
 <div class="stats-strip">
   <div class="stats-grid">
-    <div class="stat-item reveal"><div class="stat-value" style="color:var(--accent-light)">Giorno 1</div><div class="stat-label">siamo appena partiti</div><div class="stat-note">e questo ci rende affamati</div></div>
-    <div class="stat-item reveal reveal-d1"><div class="stat-value" style="color:var(--mint)">∞</div><div class="stat-label">idee in coda</div><div class="stat-note">il bello di iniziare da zero</div></div>
-    <div class="stat-item reveal reveal-d2"><div class="stat-value" style="color:var(--mint)">100%</div><div class="stat-label">ossessione per i risultati</div><div class="stat-note">questa non cambia mai</div></div>
+    <div class="stat-item reveal">
+      <div class="stat-value" style="color:var(--mint)">Adobe CC</div>
+      <div class="stat-label">lo stesso stack delle produzioni professionali</div>
+      <div class="stat-note">Premiere, DaVinci, After Effects, Illustrator — non CapCut, non Canva</div>
+    </div>
+    <div class="stat-item reveal reveal-d1">
+      <div class="stat-value" style="color:var(--accent-light)">0 template</div>
+      <div class="stat-label">ogni contenuto nasce da zero</div>
+      <div class="stat-note">script, riprese, montaggio, copy — tutto costruito per te, non riciclato</div>
+    </div>
+    <div class="stat-item reveal reveal-d2">
+      <div class="stat-value" style="color:var(--mint)">30 giorni</div>
+      <div class="stat-label">preavviso per uscire, se non ti convince</div>
+      <div class="stat-note">nessun vincolo, nessuna penale — ci teniamo il contratto con i risultati</div>
+    </div>
   </div>
 </div>
 

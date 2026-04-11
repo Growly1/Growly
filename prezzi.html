@@ -64,67 +64,125 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
     }
 
+    /* ═══ PRICE CARDS v3 — redesign ═══ */
     .price-card {
-      background: var(--bg-card-solid); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 2.5rem 2rem;
+      border-radius: 20px; padding: 2.25rem 2rem;
       display: flex; flex-direction: column; position: relative;
-      overflow: hidden; transition: all var(--transition-smooth);
+      overflow: hidden; transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
     }
-    .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    /* Corner glow blob */
+    .price-card::after {
+      content: ''; position: absolute; bottom: -90px; right: -90px;
+      width: 240px; height: 240px; border-radius: 50%; pointer-events: none;
+      transition: opacity 0.4s ease; opacity: 0.5;
+    }
+    .price-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(0,0,0,0.4); }
+    /* non-featured glow on hover */
+    .price-card:not(.featured):hover { border-color: var(--border-hover); }
+
+    /* Featured */
     .price-card.featured {
-      border: 2px solid var(--accent);
-      background: linear-gradient(180deg, rgba(108,63,255,0.06) 0%, var(--bg-card-solid) 50%);
+      background: linear-gradient(155deg, rgba(108,63,255,0.13) 0%, rgba(108,63,255,0.04) 50%, transparent 100%);
+      border: 1.5px solid rgba(108,63,255,0.5);
     }
-    .price-badge {
-      position: absolute; top: 0; right: 2rem;
-      background: var(--accent); color: var(--white);
-      font-size: 0.72rem; font-weight: 700;
-      padding: 0.4rem 1rem 0.5rem; border-radius: 0 0 8px 8px;
-      text-transform: uppercase; letter-spacing: 0.05em;
+    .price-card.featured::after { opacity: 0.7; }
+    .price-card.featured:hover { border-color: rgba(108,63,255,0.85); box-shadow: 0 32px 80px rgba(108,63,255,0.22); }
+
+    /* Tier glow colors per card */
+    .price-card-lancio::after  { background: radial-gradient(circle, rgba(0,245,196,0.12), transparent 70%); }
+    .price-card-slancio::after { background: radial-gradient(circle, rgba(108,63,255,0.18), transparent 70%); }
+    .price-card-allin::after   { background: radial-gradient(circle, rgba(255,189,46,0.12), transparent 70%); }
+    .price-card-base::after    { background: radial-gradient(circle, rgba(0,245,196,0.08), transparent 70%); }
+    .price-card-pro::after     { background: radial-gradient(circle, rgba(108,63,255,0.18), transparent 70%); }
+
+    /* Plan icon */
+    .price-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.5rem; flex-shrink: 0;
     }
-    .price-badge.combo {
-      background: linear-gradient(135deg, var(--accent), var(--mint));
-      color: var(--bg-primary);
+    .price-card-lancio  .price-icon { background: rgba(0,245,196,0.1); }
+    .price-card-slancio .price-icon { background: rgba(108,63,255,0.15); }
+    .price-card-allin   .price-icon { background: linear-gradient(135deg, rgba(255,189,46,0.12), rgba(108,63,255,0.1)); }
+    .price-card-base    .price-icon { background: rgba(0,245,196,0.08); }
+    .price-card-pro     .price-icon { background: rgba(108,63,255,0.15); }
+
+    /* Tier label */
+    .price-tier {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem;
     }
-    .price-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .price-desc { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.5rem; line-height: 1.5; }
+    /* Plan name */
+    .price-name {
+      font-family: var(--font-display); font-size: clamp(1.7rem,3vw,2rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.65rem;
+    }
+    .price-card.featured .price-name {
+      background: linear-gradient(135deg, #fff 30%, rgba(180,150,255,0.9));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .price-desc { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 1.5rem; line-height: 1.6; }
+
+    /* Price */
     .price-amount {
-      font-family: var(--font-display); font-size: 3rem; font-weight: 800;
-      color: var(--mint); line-height: 1;
-      transition: text-shadow 0.3s ease;
+      font-family: var(--font-display); font-size: 3.4rem; font-weight: 800;
+      color: var(--mint); line-height: 1; letter-spacing: -0.05em;
     }
-    .price-amount .currency { font-size: 1.8rem; }
+    .price-card.featured .price-amount { text-shadow: 0 0 50px rgba(0,245,196,0.3); }
+    .price-amount .currency { font-size: 1.7rem; }
     .price-burst { text-shadow: 0 0 40px var(--mint-glow), 0 0 80px rgba(0,245,196,0.2); }
-    .price-period { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 2rem; }
+    .price-period { color: var(--text-muted); font-size: 0.78rem; margin: 0.25rem 0 1.75rem; }
+
     .price-first-month {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      background: rgba(0,245,196,0.08); border: 1px solid rgba(0,245,196,0.2);
+      background: rgba(0,245,196,0.08); border: 1px solid rgba(0,245,196,0.25);
       border-radius: 999px; padding: 0.3rem 0.9rem;
       font-size: 0.75rem; color: var(--mint); font-weight: 600; margin-bottom: 0.5rem;
     }
-    .price-then { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 2rem; }
-    .price-features { display: flex; flex-direction: column; gap: 0.75rem; flex: 1; margin-bottom: 2rem; }
+    .price-then { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 1.75rem; }
+
+    /* Features */
+    .price-features { display: flex; flex-direction: column; gap: 0.65rem; flex: 1; margin-bottom: 2rem; }
     .price-feature {
       display: flex; align-items: flex-start; gap: 0.65rem;
-      font-size: 0.88rem; color: var(--text-primary);
+      font-size: 0.86rem; color: var(--text-primary); line-height: 1.45;
     }
-    .price-feature .check { color: var(--mint); font-weight: 700; flex-shrink: 0; }
+    .price-feature .check {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 0.06rem;
+      background: rgba(0,245,196,0.1); color: var(--mint); font-size: 0.58rem; font-weight: 900;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
     .price-feature.highlight { color: var(--mint); font-weight: 600; }
+    .price-feature.highlight .check { background: rgba(0,245,196,0.22); }
 
+    /* Badge */
+    .price-badge {
+      position: absolute; top: 0; right: 1.75rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #fff; font-size: 0.68rem; font-weight: 700;
+      padding: 0.4rem 1rem 0.55rem; border-radius: 0 0 10px 10px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      box-shadow: 0 4px 16px rgba(108,63,255,0.4);
+    }
+    .price-badge.combo {
+      background: linear-gradient(135deg, var(--mint), #7BFFEF);
+      color: #000; box-shadow: 0 4px 16px rgba(0,245,196,0.35);
+    }
+
+    /* Add-on toggle */
     .addon-toggle {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 1.25rem; background: rgba(108,63,255,0.05);
-      border: 1px solid var(--border); border-radius: var(--radius-md);
-      margin-bottom: 1.5rem; cursor: pointer; transition: all var(--transition-fast);
-      min-height: 44px;
+      padding: 0.9rem 1.1rem; background: rgba(108,63,255,0.05);
+      border: 1px solid rgba(108,63,255,0.15); border-radius: 10px;
+      margin-bottom: 1.5rem; cursor: pointer; transition: all var(--transition-fast); min-height: 44px;
     }
-    .addon-toggle:hover { border-color: var(--border-hover); }
+    .addon-toggle:hover { border-color: rgba(108,63,255,0.35); background: rgba(108,63,255,0.09); }
     .addon-name { font-size: 0.85rem; font-weight: 600; }
     .addon-price { font-size: 0.78rem; color: var(--mint); font-weight: 600; }
     .addon-switch {
-      width: 44px; height: 24px; border-radius: 12px;
-      background: var(--text-muted); position: relative;
-      transition: background 0.3s; flex-shrink: 0; margin-left: 1rem;
+      width: 44px; height: 24px; border-radius: 12px; background: var(--text-muted);
+      position: relative; transition: background 0.3s; flex-shrink: 0; margin-left: 1rem;
     }
     .addon-switch::after {
       content: ''; position: absolute; top: 3px; left: 3px;
@@ -134,15 +192,19 @@
     .addon-toggle.active .addon-switch { background: var(--mint); }
     .addon-toggle.active .addon-switch::after { transform: translateX(20px); }
 
+    /* Buttons */
     .btn-price {
-      display: block; text-align: center; padding: 0.9rem 1.5rem;
-      border-radius: var(--radius-sm); font-weight: 600; font-size: 0.92rem;
-      transition: all var(--transition-smooth); min-height: 44px;
+      display: block; text-align: center; padding: 1rem 1.5rem;
+      border-radius: 999px; font-weight: 700; font-size: 0.92rem;
+      letter-spacing: 0.01em; transition: all 0.25s ease; min-height: 48px;
     }
-    .btn-price-primary { background: var(--accent); color: var(--white); }
-    .btn-price-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
+    .btn-price-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #fff; box-shadow: 0 4px 20px rgba(108,63,255,0.35);
+    }
+    .btn-price-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(108,63,255,0.5); }
     .btn-price-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text-primary); }
-    .btn-price-outline:hover { border-color: var(--mint); color: var(--mint); transform: translateY(-2px); }
+    .btn-price-outline:hover { border-color: var(--mint); color: var(--mint); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,245,196,0.14); }
 
     .pricing-separator { padding: 0 2rem; max-width: 1200px; margin: 0 auto; }
 
@@ -265,7 +327,9 @@
       </div>
     </div>
     <div class="pricing-grid-2">
-      <div class="price-card reveal">
+      <div class="price-card price-card-base reveal">
+        <div class="price-icon">🌐</div>
+        <div class="price-tier">Per chi parte online</div>
         <div class="price-name">Base</div>
         <div class="price-desc">Il tuo biglietto da visita digitale, fatto bene.</div>
         <div class="price-amount"><span class="currency">€</span><span id="base-price">449</span></div>
@@ -273,7 +337,7 @@
         <div class="addon-toggle" id="addon-anim">
           <div class="addon-info">
             <span class="addon-name">+ Animazioni sul sito</span>
-            <span class="addon-price">+€110/mese</span>
+            <span class="addon-price">+€110 una tantum</span>
           </div>
           <div class="addon-switch"></div>
         </div>
@@ -286,8 +350,10 @@
         </div>
         <a href="contatti.html" class="btn-price btn-price-outline">Inizia da qui</a>
       </div>
-      <div class="price-card featured reveal reveal-d1">
+      <div class="price-card price-card-pro featured reveal reveal-d1">
         <div class="price-badge">Consigliato</div>
+        <div class="price-icon">💎</div>
+        <div class="price-tier">Per chi vuole primeggiare</div>
         <div class="price-name">Professional</div>
         <div class="price-desc">Il sito che i tuoi competitor vorrebbero avere.</div>
         <div class="price-amount"><span class="currency">€</span>649</div>
@@ -320,8 +386,10 @@
       </div>
     </div>
     <div class="pricing-grid-3">
-      <div class="price-card reveal">
-        <div class="price-name">Starter</div>
+      <div class="price-card price-card-lancio reveal">
+        <div class="price-icon">🌱</div>
+        <div class="price-tier">Per chi inizia</div>
+        <div class="price-name">Lancio</div>
         <div class="price-desc">Per chi parte da zero. Un piede nel mondo social, fatto bene.</div>
         <div class="price-amount"><span class="currency">€</span>379</div>
         <div class="price-period">al mese</div>
@@ -334,9 +402,11 @@
         </div>
         <a href="contatti.html" class="btn-price btn-price-outline">Inizia da qui</a>
       </div>
-      <div class="price-card featured reveal reveal-d1">
+      <div class="price-card price-card-slancio featured reveal reveal-d1">
         <div class="price-badge">Più scelto</div>
-        <div class="price-name">Growth</div>
+        <div class="price-icon">⚡</div>
+        <div class="price-tier">Per chi vuole crescere</div>
+        <div class="price-name">Slancio</div>
         <div class="price-desc">Per chi vuole crescere sul serio su più piattaforme.</div>
         <div class="price-amount"><span class="currency">€</span>679</div>
         <div class="price-period">al mese</div>
@@ -348,10 +418,12 @@
           <div class="price-feature highlight"><span class="check">✓</span> €150 in Ads incluse</div>
           <div class="price-feature"><span class="check">✓</span> Report mensile</div>
         </div>
-        <a href="contatti.html" class="btn-price btn-price-primary">Scegli Growth</a>
+        <a href="contatti.html" class="btn-price btn-price-primary">Scegli Slancio</a>
       </div>
-      <div class="price-card reveal reveal-d2">
+      <div class="price-card price-card-allin reveal reveal-d2">
         <div class="price-badge combo">Social + Web</div>
+        <div class="price-icon">🔥</div>
+        <div class="price-tier">Il massimo che offriamo</div>
         <div class="price-name">All-In</div>
         <div class="price-desc">Il pacchetto completo. Social su 3 piattaforme + sito web.</div>
         <div class="price-first-month">🔥 Primo mese</div>
@@ -388,13 +460,16 @@
       <!-- Step 1 -->
       <div class="quiz-step active" id="step-1">
         <div class="quiz-question">Che tipo di attività hai?</div>
-        <div class="quiz-hint">Scegli quella che ti descrive meglio</div>
+        <div class="quiz-hint">Scegli quella che ti descrive meglio — anche se non è perfetta</div>
         <div class="quiz-cards" data-multiple="false">
-          <div class="quiz-card" data-value="Bar, Ristorante o Locale"><div class="quiz-card-icon">🍕</div><div class="quiz-card-label">Bar, Ristorante o Locale</div></div>
-          <div class="quiz-card" data-value="Negozio o E-commerce"><div class="quiz-card-icon">🛍️</div><div class="quiz-card-label">Negozio o E-commerce</div></div>
-          <div class="quiz-card" data-value="Studio professionale o Libero professionista"><div class="quiz-card-icon">💼</div><div class="quiz-card-label">Studio professionale o Libero professionista</div></div>
-          <div class="quiz-card" data-value="Brand nuovo o Startup"><div class="quiz-card-icon">🚀</div><div class="quiz-card-label">Brand nuovo o Startup</div></div>
-          <div class="quiz-card" data-value="Altro"><div class="quiz-card-icon">🤷</div><div class="quiz-card-label">Altro / Non so ancora catalogarmi</div></div>
+          <div class="quiz-card" data-value="Bar, caffè, ristorante o locale serale"><div class="quiz-card-icon">☕</div><div class="quiz-card-label">Bar, caffè, ristorante o locale serale</div></div>
+          <div class="quiz-card" data-value="Parrucchiere, barbiere o centro estetico"><div class="quiz-card-icon">✂️</div><div class="quiz-card-label">Parrucchiere, barbiere o centro estetico</div></div>
+          <div class="quiz-card" data-value="Negozio fisico o e-commerce"><div class="quiz-card-icon">🛍️</div><div class="quiz-card-label">Negozio fisico o e-commerce</div></div>
+          <div class="quiz-card" data-value="Personal trainer, coach o centro sportivo"><div class="quiz-card-icon">💪</div><div class="quiz-card-label">Personal trainer, coach o centro sportivo</div></div>
+          <div class="quiz-card" data-value="Professionista (avvocato, architetto, commercialista…)"><div class="quiz-card-icon">💼</div><div class="quiz-card-label">Professionista (avvocato, architetto, commercialista…)</div></div>
+          <div class="quiz-card" data-value="Artigiano, fotografo o creativo"><div class="quiz-card-icon">🎨</div><div class="quiz-card-label">Artigiano, fotografo o creativo</div></div>
+          <div class="quiz-card" data-value="Brand nuovo o startup"><div class="quiz-card-icon">🚀</div><div class="quiz-card-label">Brand nuovo o startup</div></div>
+          <div class="quiz-card" data-value="Altro — non mi riconosco in nessuna di queste"><div class="quiz-card-icon">🤷</div><div class="quiz-card-label">Altro — non mi riconosco in nessuna di queste</div></div>
         </div>
         <div class="quiz-nav">
           <span class="quiz-step-counter">1 di 7</span>

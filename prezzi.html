@@ -146,48 +146,51 @@
 
     .pricing-separator { padding: 0 2rem; max-width: 1200px; margin: 0 auto; }
 
-    /* ═══════ CONFIGURATOR ═══════ */
-    .configurator-section { background: var(--bg-secondary); }
-    .config-box {
-      background: var(--bg-card-solid); border: 1px solid var(--border);
-      border-radius: var(--radius-xl); padding: 3rem;
-      max-width: 800px; margin: 0 auto;
+    /* GROWLY UPDATE - A: Quiz Typeform-style */
+    .quiz-section { background: var(--bg-secondary); }
+    .quiz-container { max-width: 720px; margin: 0 auto; }
+    .quiz-progress-bar { height: 3px; background: var(--border); border-radius: 999px; margin-bottom: 3rem; overflow: hidden; }
+    .quiz-progress-fill { height: 100%; background: linear-gradient(90deg, var(--mint), var(--accent)); border-radius: 999px; transition: width 0.45s ease; width: 0%; }
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; animation: quizIn 0.35s ease; }
+    @keyframes quizIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .quiz-question { font-family: var(--font-display); font-size: clamp(1.35rem, 3.5vw, 1.9rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.5rem; }
+    .quiz-hint { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .quiz-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 0.75rem; margin-bottom: 2rem; }
+    .quiz-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.55rem; padding: 1.2rem 1rem; min-height: 84px;
+      background: var(--bg-card-solid); border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg); cursor: pointer; text-align: center;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      user-select: none; -webkit-tap-highlight-color: transparent;
     }
-    .config-label {
-      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;
+    .quiz-card:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.03); }
+    .quiz-card:active { transform: scale(0.97); }
+    .quiz-card.selected {
+      border-color: var(--mint); background: rgba(0,245,196,0.06);
+      box-shadow: 0 0 0 1px var(--mint), 0 0 18px rgba(0,245,196,0.12);
     }
-    .config-chips {
-      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem;
+    .quiz-card-icon { font-size: 1.7rem; line-height: 1; }
+    .quiz-card-label { font-size: 0.84rem; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+    .quiz-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .quiz-step-counter { font-size: 0.8rem; color: var(--text-muted); }
+    .quiz-btn-next {
+      padding: 0.9rem 2.2rem; background: var(--mint); color: #000;
+      font-weight: 700; font-size: 0.95rem; border: none; border-radius: 999px;
+      cursor: pointer; transition: all 0.2s; min-height: 48px;
+      opacity: 0.35; pointer-events: none; font-family: inherit;
     }
-    .config-chip {
-      padding: 0.7rem 1.2rem; border-radius: 999px;
-      background: rgba(108,63,255,0.06); border: 1px solid var(--border);
-      font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
-      transition: all var(--transition-fast); min-height: 44px;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .config-chip:hover { border-color: var(--border-hover); color: var(--white); }
-    .config-chip.selected {
-      border-color: var(--mint); background: var(--mint-dim);
-      color: var(--mint); font-weight: 600;
-    }
-    .config-chip .chip-price { font-size: 0.75rem; opacity: 0.7; }
-    .config-total-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 0; border-top: 1px solid var(--border);
-      margin-top: 1rem;
-    }
-    .config-total-label { font-size: 1.1rem; font-weight: 600; }
-    .config-total-amount {
-      font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
-      color: var(--mint);
-    }
-    .config-total-period { color: var(--text-muted); font-size: 0.82rem; }
-    .config-note {
-      color: var(--text-muted); font-size: 0.82rem; margin-top: 0.5rem; line-height: 1.5;
-    }
-    .config-cta { margin-top: 2rem; text-align: center; }
+    .quiz-btn-next.enabled { opacity: 1; pointer-events: auto; }
+    .quiz-btn-next.enabled:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,245,196,0.3); }
+    .quiz-btn-next.enabled:active { transform: scale(0.97); }
+    /* Final screen */
+    .quiz-final { text-align: center; padding: 1.5rem 0 0.5rem; }
+    .quiz-final-icon { font-size: 3rem; margin-bottom: 1.25rem; }
+    .quiz-final-title { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1rem; }
+    .quiz-final-sub { color: var(--text-secondary); font-size: 1rem; line-height: 1.75; max-width: 520px; margin: 0 auto 2.5rem; }
+    .quiz-final-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .quiz-final-note { margin-top: 1.25rem; font-size: 0.82rem; color: var(--text-muted); }
 
     @media (max-width: 900px) {
       .pricing-grid-2 { grid-template-columns: 1fr; max-width: 480px; }
@@ -195,7 +198,21 @@
     }
     @media (max-width: 640px) {
       .page-hero { padding: 8rem 1.5rem 3rem; }
-      .config-box { padding: 2rem 1.5rem; }
+      .page-hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .quiz-cards { grid-template-columns: 1fr; }
+      .quiz-card { flex-direction: row; justify-content: flex-start; min-height: 58px; padding: 0.85rem 1.1rem; gap: 0.75rem; text-align: left; }
+      .quiz-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+      .quiz-btn-next { width: 100%; text-align: center; }
+      .quiz-nav { flex-direction: column-reverse; align-items: stretch; }
+      .quiz-step-counter { text-align: center; }
+      .quiz-final-ctas { flex-direction: column; align-items: stretch; }
+      .quiz-final-ctas .btn { text-align: center; }
+      .pricing-grid-2, .pricing-grid-3 { max-width: 100%; padding: 0 0.5rem; }
+    }
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: 1.9rem; }
+      .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+      .price-card { padding: 1.75rem 1.25rem; }
     }
   </style>
 </head>
@@ -356,61 +373,146 @@
 
 <div class="section-divider"></div>
 
-<!-- ═══════ CONFIGURATORE PACCHETTO ═══════ -->
-<section class="section configurator-section" id="configuratore">
+<!-- GROWLY UPDATE - A: Quiz conoscitivo Typeform-style -->
+<section class="section quiz-section" id="questionario">
   <div class="section-inner">
     <div class="section-header center reveal">
-      <span class="section-tag">Su misura</span>
-      <h2 class="section-title">Crea il tuo <span class="gradient">pacchetto</span></h2>
-      <p class="section-sub">Nessun pacchetto fa per te? Seleziona solo quello che ti serve e vedi il prezzo in tempo reale.</p>
+      <span class="section-tag">Parlaci di te</span>
+      <h2 class="section-title">Prima di tutto,<br><span class="gradient">dimmi chi sei.</span></h2>
+      <p class="section-sub">Due minuti. Le tue risposte ci permettono di arrivare alla call già preparati — nessun pacchetto standard, solo quello che ha senso per te.</p>
     </div>
 
-    <div class="config-box reveal">
-      <div class="config-label">Piattaforme Social</div>
-      <div class="config-chips">
-        <div class="config-chip" data-price="200">📱 Instagram <span class="chip-price">+€200</span></div>
-        <div class="config-chip" data-price="200">🎵 TikTok <span class="chip-price">+€200</span></div>
-        <div class="config-chip" data-price="150">📘 Facebook <span class="chip-price">+€150</span></div>
-      </div>
+    <div class="quiz-container reveal">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress"></div></div>
 
-      <div class="config-label">Contenuti</div>
-      <div class="config-chips">
-        <div class="config-chip" data-price="80">🎬 +4 Reel/mese <span class="chip-price">+€80</span></div>
-        <div class="config-chip" data-price="60">📸 +4 Post/mese <span class="chip-price">+€60</span></div>
-        <div class="config-chip" data-price="100">📹 +2 Sessioni riprese <span class="chip-price">+€100</span></div>
-        <div class="config-chip" data-price="40">📝 Copywriting avanzato <span class="chip-price">+€40</span></div>
-      </div>
-
-      <div class="config-label">Sito Web</div>
-      <div class="config-chips">
-        <div class="config-chip" data-price="449">🌐 Sito Base (5 pagine) <span class="chip-price">+€449</span></div>
-        <div class="config-chip" data-price="649">⚡ Sito Professional <span class="chip-price">+€649</span></div>
-        <div class="config-chip" data-price="110">✨ Animazioni sito <span class="chip-price">+€110</span></div>
-      </div>
-
-      <div class="config-label">Advertising</div>
-      <div class="config-chips">
-        <div class="config-chip" data-price="150">🎯 Meta Ads (€150 budget) <span class="chip-price">+€150</span></div>
-        <div class="config-chip" data-price="200">📊 Meta Ads (€300 budget) <span class="chip-price">+€200</span></div>
-        <div class="config-chip" data-price="120">🎵 TikTok Ads <span class="chip-price">+€120</span></div>
-      </div>
-
-      <div class="config-total-row">
-        <div>
-          <div class="config-total-label">Il tuo pacchetto</div>
-          <div class="config-note">Base di partenza: €200/mese (setup + gestione)</div>
+      <!-- Step 1 -->
+      <div class="quiz-step active" id="step-1">
+        <div class="quiz-question">Che tipo di attività hai?</div>
+        <div class="quiz-hint">Scegli quella che ti descrive meglio</div>
+        <div class="quiz-cards" data-multiple="false">
+          <div class="quiz-card" data-value="Bar, Ristorante o Locale"><div class="quiz-card-icon">🍕</div><div class="quiz-card-label">Bar, Ristorante o Locale</div></div>
+          <div class="quiz-card" data-value="Negozio o E-commerce"><div class="quiz-card-icon">🛍️</div><div class="quiz-card-label">Negozio o E-commerce</div></div>
+          <div class="quiz-card" data-value="Studio professionale o Libero professionista"><div class="quiz-card-icon">💼</div><div class="quiz-card-label">Studio professionale o Libero professionista</div></div>
+          <div class="quiz-card" data-value="Brand nuovo o Startup"><div class="quiz-card-icon">🚀</div><div class="quiz-card-label">Brand nuovo o Startup</div></div>
+          <div class="quiz-card" data-value="Altro"><div class="quiz-card-icon">🤷</div><div class="quiz-card-label">Altro / Non so ancora catalogarmi</div></div>
         </div>
-        <div style="text-align:right">
-          <div class="config-total-amount"><span style="font-size:1.4rem">€</span><span id="config-total">200</span></div>
-          <div class="config-total-period">al mese</div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">1 di 7</span>
+          <button class="quiz-btn-next" data-next="2">Avanti →</button>
         </div>
       </div>
 
-      <div class="config-cta">
-        <a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.5rem">Parliamone insieme →</a>
-        <p class="config-note" style="margin-top:1rem">Il prezzo finale viene confermato dopo la call — questo è un preventivo indicativo.</p>
+      <!-- Step 2 -->
+      <div class="quiz-step" id="step-2">
+        <div class="quiz-question">Qual è la cosa più importante per te adesso?</div>
+        <div class="quiz-hint">Una sola risposta</div>
+        <div class="quiz-cards" data-multiple="false">
+          <div class="quiz-card" data-value="Far venire più persone nel locale fisico"><div class="quiz-card-icon">📍</div><div class="quiz-card-label">Far venire più persone nel mio locale fisico</div></div>
+          <div class="quiz-card" data-value="Vendere di più — online o offline"><div class="quiz-card-icon">🛒</div><div class="quiz-card-label">Vendere di più — online o offline</div></div>
+          <div class="quiz-card" data-value="Diventare il punto di riferimento nel settore"><div class="quiz-card-icon">🏆</div><div class="quiz-card-label">Diventare il punto di riferimento nel mio settore</div></div>
+          <div class="quiz-card" data-value="Partire da zero e costruire una presenza digitale seria"><div class="quiz-card-icon">🌱</div><div class="quiz-card-label">Partire da zero e costruire una presenza digitale seria</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">2 di 7</span>
+          <button class="quiz-btn-next" data-next="3">Avanti →</button>
+        </div>
       </div>
-    </div>
+
+      <!-- Step 3 -->
+      <div class="quiz-step" id="step-3">
+        <div class="quiz-question">Su quali piattaforme vuoi essere presente?</div>
+        <div class="quiz-hint">Puoi sceglierne più d'una</div>
+        <div class="quiz-cards" data-multiple="true">
+          <div class="quiz-card" data-value="Instagram"><div class="quiz-card-icon">📸</div><div class="quiz-card-label">Instagram</div></div>
+          <div class="quiz-card" data-value="TikTok"><div class="quiz-card-icon">🎵</div><div class="quiz-card-label">TikTok</div></div>
+          <div class="quiz-card" data-value="Facebook"><div class="quiz-card-icon">📘</div><div class="quiz-card-label">Facebook</div></div>
+          <div class="quiz-card" data-value="Non lo so — decidete voi in base ai dati"><div class="quiz-card-icon">🤔</div><div class="quiz-card-label">Non lo so — decidete voi in base ai dati</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">3 di 7</span>
+          <button class="quiz-btn-next" data-next="4">Avanti →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="quiz-step" id="step-4">
+        <div class="quiz-question">Che tipo di contenuti pensi ti servano?</div>
+        <div class="quiz-hint">Puoi sceglierne più d'uno</div>
+        <div class="quiz-cards" data-multiple="true">
+          <div class="quiz-card" data-value="Video e Reel"><div class="quiz-card-icon">🎬</div><div class="quiz-card-label">Video e Reel — dinamici e coinvolgenti</div></div>
+          <div class="quiz-card" data-value="Foto e post grafici"><div class="quiz-card-icon">📸</div><div class="quiz-card-label">Foto e post grafici — estetica curata</div></div>
+          <div class="quiz-card" data-value="Storytelling e racconto del brand"><div class="quiz-card-icon">📖</div><div class="quiz-card-label">Storytelling — raccontare chi sei e cosa fai</div></div>
+          <div class="quiz-card" data-value="Lascio decidere a voi"><div class="quiz-card-icon">🙋</div><div class="quiz-card-label">Lascio decidere a voi — sono qui per imparare</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">4 di 7</span>
+          <button class="quiz-btn-next" data-next="5">Avanti →</button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="quiz-step" id="step-5">
+        <div class="quiz-question">Hai già un sito web?</div>
+        <div class="quiz-hint">Una sola risposta</div>
+        <div class="quiz-cards" data-multiple="false">
+          <div class="quiz-card" data-value="Sì, funziona bene e sono soddisfatto" data-skip6="true"><div class="quiz-card-icon">✅</div><div class="quiz-card-label">Sì, funziona bene e sono soddisfatto</div></div>
+          <div class="quiz-card" data-value="Sì, ma è vecchio / brutto / lento" data-skip6="false"><div class="quiz-card-icon">😬</div><div class="quiz-card-label">Sì, ma è vecchio / brutto / lento</div></div>
+          <div class="quiz-card" data-value="No, e ne ho bisogno" data-skip6="false"><div class="quiz-card-icon">❌</div><div class="quiz-card-label">No, e ne ho bisogno</div></div>
+          <div class="quiz-card" data-value="No, e non so se mi serve davvero" data-skip6="true"><div class="quiz-card-icon">🤷</div><div class="quiz-card-label">No, e non so se mi serve davvero</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">5 di 7</span>
+          <button class="quiz-btn-next" data-next="6">Avanti →</button>
+        </div>
+      </div>
+
+      <!-- Step 6 — condizionale -->
+      <div class="quiz-step" id="step-6">
+        <div class="quiz-question">Cosa deve fare il tuo sito?</div>
+        <div class="quiz-hint">Puoi sceglierne più d'uno</div>
+        <div class="quiz-cards" data-multiple="true">
+          <div class="quiz-card" data-value="Presentare la mia attività in modo professionale"><div class="quiz-card-icon">📋</div><div class="quiz-card-label">Presentare la mia attività in modo professionale</div></div>
+          <div class="quiz-card" data-value="Raccogliere prenotazioni o richieste di contatto"><div class="quiz-card-icon">📅</div><div class="quiz-card-label">Raccogliere prenotazioni o richieste di contatto</div></div>
+          <div class="quiz-card" data-value="Vendere prodotti online (e-commerce)"><div class="quiz-card-icon">🛍️</div><div class="quiz-card-label">Vendere prodotti online (e-commerce)</div></div>
+          <div class="quiz-card" data-value="Stupire al primo colpo — voglio wow factor"><div class="quiz-card-icon">✨</div><div class="quiz-card-label">Stupire al primo colpo — voglio wow factor</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">6 di 7</span>
+          <button class="quiz-btn-next" data-next="7">Avanti →</button>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="quiz-step" id="step-7">
+        <div class="quiz-question">Hai già investito in pubblicità a pagamento?</div>
+        <div class="quiz-hint">Una sola risposta</div>
+        <div class="quiz-cards" data-multiple="false">
+          <div class="quiz-card" data-value="Sì, ma non ho visto risultati concreti"><div class="quiz-card-icon">💸</div><div class="quiz-card-label">Sì, ma non ho visto risultati concreti</div></div>
+          <div class="quiz-card" data-value="No, ma sono pronto a farlo se ha senso"><div class="quiz-card-icon">🌱</div><div class="quiz-card-label">No, ma sono pronto a farlo se ha senso</div></div>
+          <div class="quiz-card" data-value="Voglio capire prima come funziona"><div class="quiz-card-icon">🔍</div><div class="quiz-card-label">Voglio capire prima come funziona</div></div>
+          <div class="quiz-card" data-value="Per ora solo crescita organica"><div class="quiz-card-icon">🚫</div><div class="quiz-card-label">Per ora voglio solo crescita organica</div></div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-counter">7 di 7</span>
+          <button class="quiz-btn-next" data-next="final">Vedi il riepilogo →</button>
+        </div>
+      </div>
+
+      <!-- Step finale -->
+      <div class="quiz-step" id="step-final">
+        <div class="quiz-final">
+          <div class="quiz-final-icon">✅</div>
+          <div class="quiz-final-title">Perfetto.<br>Ora sappiamo esattamente da dove partire.</div>
+          <p class="quiz-final-sub">Le tue risposte ci aiutano a costruire una proposta reale, non un pacchetto standard. Niente numeri buttati lì — prima parliamo, poi ti diciamo cosa ha senso per te.</p>
+          <div class="quiz-final-ctas">
+            <a href="contatti.html" class="btn btn-primary" style="padding:1rem 2.3rem">Parliamoci →</a>
+            <a id="quiz-wa-btn" href="https://wa.me/393479714112" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:1rem 2.3rem">💬 Scrivici su WhatsApp</a>
+          </div>
+          <p class="quiz-final-note">Nessun impegno. La prima call è gratuita.</p>
+        </div>
+      </div>
+
+    </div><!-- /quiz-container -->
   </div>
 </section>
 
@@ -448,5 +550,87 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<script>
+/* GROWLY UPDATE - A: Quiz logic */
+(function () {
+  var answers = {};
+  var skip6 = false;
+  var TOTAL = 7;
+
+  function pct(n) { return Math.round((n / TOTAL) * 100) + '%'; }
+  function setProgress(n) { var el = document.getElementById('quiz-progress'); if (el) el.style.width = pct(n); }
+
+  function showStep(id) {
+    document.querySelectorAll('.quiz-step').forEach(function (s) { s.classList.remove('active'); });
+    var t = document.getElementById('step-' + id);
+    if (t) {
+      t.classList.add('active');
+      setTimeout(function () { t.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+    }
+  }
+
+  function getSelected(container) {
+    return Array.from(container.querySelectorAll('.quiz-card.selected')).map(function (c) { return c.dataset.value; });
+  }
+
+  function initStep(sid) {
+    var step = document.getElementById('step-' + sid);
+    if (!step) return;
+    var grid = step.querySelector('.quiz-cards');
+    var btn = step.querySelector('.quiz-btn-next');
+    if (!grid || !btn) return;
+    var multi = grid.dataset.multiple === 'true';
+
+    grid.querySelectorAll('.quiz-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        if (!multi) grid.querySelectorAll('.quiz-card').forEach(function (c) { c.classList.remove('selected'); });
+        card.classList.toggle('selected');
+        if (!multi && card.classList.contains('selected') && sid === 5) {
+          skip6 = card.dataset.skip6 === 'true';
+        }
+        btn.classList.toggle('enabled', getSelected(grid).length > 0);
+      });
+    });
+
+    btn.addEventListener('click', function () {
+      if (!btn.classList.contains('enabled')) return;
+      var vals = getSelected(grid);
+      if (!vals.length) return;
+      answers['s' + sid] = vals.join(', ');
+      var nxt = btn.dataset.next;
+      if (nxt === 'final') {
+        setProgress(TOTAL);
+        buildWA();
+        showStep('final');
+      } else if (nxt === '6' && skip6) {
+        answers['s6'] = '—';
+        setProgress(6);
+        showStep(7);
+      } else {
+        setProgress(parseInt(nxt, 10) - 1);
+        showStep(nxt);
+      }
+    });
+  }
+
+  function buildWA() {
+    var lines = [
+      'Ciao Growly! Ho compilato il questionario sul sito:',
+      '- Attività: ' + (answers.s1 || '—'),
+      '- Obiettivo: ' + (answers.s2 || '—'),
+      '- Piattaforme: ' + (answers.s3 || '—'),
+      '- Contenuti: ' + (answers.s4 || '—'),
+      '- Sito web: ' + (answers.s5 || '—'),
+      '- Ads: ' + (answers.s7 || '—'),
+      'Possiamo sentirci?'
+    ];
+    var waBtn = document.getElementById('quiz-wa-btn');
+    if (waBtn) waBtn.href = 'https://wa.me/393479714112?text=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  [1, 2, 3, 4, 5, 6, 7].forEach(initStep);
+  setProgress(0);
+})();
+</script>
 </body>
 </html>

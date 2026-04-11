@@ -205,22 +205,34 @@
     /* Video tools pair — 2 mockup affiancati */
     .video-tools-pair { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
 
-    /* AI section espansa */
-    .ai-expanded { background:linear-gradient(135deg,rgba(108,63,255,0.06),rgba(0,245,196,0.04)); border:1px solid rgba(108,63,255,0.15); border-radius:var(--radius-lg); padding:2.5rem; margin-top:1rem; }
-    .ai-expanded-header { display:grid; grid-template-columns:auto 1fr; gap:1.75rem; align-items:start; margin-bottom:2rem; }
-    .ai-expanded-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--mint)); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
-    .ai-expanded-header h3 { font-size:1.2rem; font-weight:800; margin-bottom:0.6rem; line-height:1.3; }
-    .ai-expanded-header p { color:var(--text-secondary); font-size:0.92rem; line-height:1.7; }
-    .ai-expanded-header p em { color:var(--mint); font-style:normal; font-weight:600; }
-    .ai-use-cases { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.75rem; }
-    .ai-use-case { background:rgba(0,0,0,0.2); border:1px solid var(--border); border-radius:var(--radius-md,10px); padding:1.25rem; transition:border-color 0.3s; }
-    .ai-use-case:hover { border-color:var(--border-hover); }
-    .ai-use-case.ai-uc-limit { border-color:rgba(255,107,107,0.2); background:rgba(255,107,107,0.04); }
-    .ai-uc-icon { font-size:1.4rem; margin-bottom:0.6rem; }
-    .ai-uc-title { font-size:0.9rem; font-weight:700; margin-bottom:0.4rem; }
-    .ai-uc-desc { font-size:0.8rem; color:var(--text-secondary); line-height:1.6; }
-    .ai-bottom-line { border-top:1px solid var(--border); padding-top:1.25rem; font-size:0.92rem; color:var(--text-secondary); line-height:1.75; }
-    .ai-bl-accent { color:var(--mint); font-weight:700; }
+    /* GROWLY UPDATE - B: Presenza digitale block */
+    .presenza-block { padding:3.5rem 0 0; text-align:center; }
+    .presenza-stat { margin-bottom:2.5rem; }
+    .presenza-num { font-family:var(--font-display); font-size:clamp(4.5rem,12vw,8rem); font-weight:800; color:var(--mint); line-height:1; letter-spacing:-0.05em; margin-bottom:0.6rem; }
+    .presenza-stat-text { font-size:1.05rem; color:var(--text-secondary); max-width:500px; margin:0 auto; line-height:1.75; }
+    .presenza-source { font-size:0.78rem; color:var(--text-muted); margin-top:0.4rem; font-style:italic; }
+    .presenza-claim { max-width:700px; margin:0 auto 1.75rem; font-size:clamp(1.05rem,2.5vw,1.22rem); font-weight:600; line-height:1.75; color:var(--text-primary); }
+    .presenza-claim .accent { color:var(--mint); }
+    .presenza-close { max-width:580px; margin:0 auto; font-size:0.95rem; color:var(--text-secondary); line-height:1.8; }
+    .presenza-divider { width:48px; height:2px; background:linear-gradient(90deg,var(--mint),var(--accent)); border-radius:2px; margin:2.5rem auto; }
+
+    /* GROWLY UPDATE - E: AI section v2 — 2 colonne */
+    .ai-v2 { background:linear-gradient(135deg,rgba(108,63,255,0.05),rgba(0,245,196,0.03)); border:1px solid rgba(108,63,255,0.12); border-radius:var(--radius-lg); padding:2.75rem; margin-top:1rem; }
+    .ai-v2-label { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--mint); margin-bottom:0.85rem; }
+    .ai-v2-title { font-size:clamp(1.15rem,2.5vw,1.5rem); font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin-bottom:0.6rem; }
+    .ai-v2-sub { color:var(--text-secondary); font-size:0.9rem; line-height:1.7; margin-bottom:2rem; max-width:620px; }
+    .ai-v2-cols { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:var(--radius-md,10px); overflow:hidden; }
+    .ai-v2-col { padding:2rem; }
+    .ai-v2-col:first-child { border-right:1px solid var(--border); background:rgba(0,245,196,0.02); }
+    .ai-v2-col-title { font-size:0.75rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.6rem; border-bottom:2px solid; display:inline-block; }
+    .ai-v2-col:first-child .ai-v2-col-title { color:var(--mint); border-color:var(--mint); }
+    .ai-v2-col:last-child .ai-v2-col-title { color:var(--text-secondary); border-color:var(--border); }
+    .ai-v2-item { display:grid; grid-template-columns:1.6rem 1fr; gap:0.5rem 0.8rem; margin-bottom:1.4rem; align-items:start; }
+    .ai-v2-item:last-child { margin-bottom:0; }
+    .ai-v2-icon { font-size:1.1rem; padding-top:0.08rem; }
+    .ai-v2-item-title { font-size:0.87rem; font-weight:700; margin-bottom:0.25rem; }
+    .ai-v2-item-desc { font-size:0.79rem; color:var(--text-secondary); line-height:1.65; }
+    .ai-v2-note { margin-top:1.75rem; padding-top:1.5rem; border-top:1px solid var(--border); text-align:center; font-size:0.88rem; color:var(--text-muted); font-style:italic; line-height:1.75; }
 
     /* ═══════ METHOD ═══════ */
     .method-timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; position:relative; }
@@ -232,6 +244,7 @@
     .method-title { font-size:1.1rem; font-weight:700; margin-bottom:0.6rem; }
     .method-desc { color:var(--text-secondary); font-size:0.85rem; line-height:1.65; }
 
+    /* GROWLY UPDATE - F: Mobile responsive */
     @media (max-width:900px) {
       .service-card.featured { grid-template-columns:1fr; }
       .services-sub-grid { grid-template-columns:1fr; }
@@ -241,16 +254,37 @@
       .method-timeline { grid-template-columns:1fr 1fr; }
       .method-timeline::before { display:none; }
       .stats-grid { grid-template-columns:1fr 1fr; }
-      .ai-use-cases { grid-template-columns:1fr 1fr; }
-      .ai-expanded-header { grid-template-columns:1fr; }
+      .ai-v2-cols { grid-template-columns:1fr; }
+      .ai-v2-col:first-child { border-right:none; border-bottom:1px solid var(--border); }
       .video-tools-pair { grid-template-columns:1fr; }
+      .profilo-grid { grid-template-columns:1fr; }
+      .profilo-card-full { grid-column:1; }
+      .profilo-card-full .profilo-needs { grid-template-columns:1fr; }
     }
     @media (max-width:640px) {
-      .hero-content { padding:7rem 1.5rem 4rem; }
+      body { overflow-x:hidden; }
+      .hero-content { padding:7rem 1.25rem 4rem; }
+      .hero-title { font-size:clamp(2rem,8vw,2.8rem); }
+      .section-title { font-size:clamp(1.55rem,7vw,2.2rem); }
+      .section-sub { font-size:0.9rem; }
+      .section-inner { padding:0 1rem; }
       .method-timeline { grid-template-columns:1fr; }
       .stats-grid { grid-template-columns:1fr; }
-      .ai-use-cases { grid-template-columns:1fr; }
       .service-visual { min-height:180px; }
+      .platform-strip { flex-wrap:wrap; }
+      .ai-v2 { padding:1.75rem 1.25rem; }
+      .ai-v2-col { padding:1.5rem 1.25rem; }
+      .btn, .btn-wa { min-height:48px; }
+      .wa-float { bottom:1.2rem; right:1.2rem; width:50px; height:50px; }
+      .profilo-card { padding:1.5rem; }
+    }
+    @media (max-width:480px) {
+      .hero-title { font-size:1.9rem; }
+      .section-title { font-size:1.5rem; }
+      p, .service-desc, .profilo-desc { line-height:1.7; }
+      .method-card { padding:1.5rem 1.25rem; }
+      .service-card { padding:1.75rem 1.25rem; }
+      .presence-num { font-size:4rem; }
     }
   </style>
 </head>
@@ -286,17 +320,32 @@
   </div>
 </div>
 
-<!-- SERVIZI -->
+<!-- GROWLY UPDATE - B: Presenza digitale -->
 <section class="section" id="servizi">
   <div class="section-inner">
+    <div class="presenza-block reveal">
+      <div class="presenza-stat">
+        <div class="presenza-num">76%</div>
+        <p class="presenza-stat-text">delle persone cerca un'attività su Google o sui social prima di entrare fisicamente.</p>
+        <p class="presenza-source">— Think with Google, 2024</p>
+      </div>
+      <p class="presenza-claim">
+        Non avere una presenza digitale oggi non è una scelta coraggiosa.<br>
+        È sparire lentamente mentre il tuo competitor — che posta ogni giorno —
+        <span class="accent">ti ruba clienti</span> che non sanno ancora che tu esisti.
+      </p>
+      <p class="presenza-close">Non serve essere ovunque. Serve essere dove guardano le persone giuste — con contenuti che le fermano, le convincono, e le portano da te.</p>
+      <div class="presenza-divider"></div>
+    </div>
     <div class="section-header reveal">
       <span class="section-tag">Cosa facciamo</span>
       <h2 class="section-title">Tre servizi.<br><span class="gradient">Un unico obiettivo: farti crescere.</span></h2>
       <p class="section-sub">Niente pacchetti copia-incolla. Ogni strategia nasce dalla tua attività, dal tuo pubblico, dai tuoi numeri.</p>
     </div>
     <div class="services-grid">
+      <!-- GROWLY UPDATE - C: icona normalizzata -->
       <div class="service-card card-social tilt-card reveal">
-        <div class="service-icon-wrap">📱</div>
+        <div class="service-icon-wrap" style="font-size:1.5rem;line-height:1">📱</div>
         <span class="service-tag">Il nostro core</span>
         <div class="service-title">Social Media Management</div>
         <p class="service-desc">Arriviamo da te con copioni pronti. Registriamo nella tua attività, montiamo tutto noi, scriviamo copy che suonano come te. Tu fai il tuo lavoro, noi facciamo crescere il tuo brand.</p>
@@ -432,12 +481,12 @@
     <!-- Design -->
     <div class="tools-showcase reverse reveal reveal-d1">
       <div class="tools-text">
+        <!-- GROWLY UPDATE - D: Design & Grafica aggiornato -->
         <h3>Design & Grafica curata</h3>
-        <p>Ogni immagine passa per Photoshop e Lightroom. I layout dei siti nascono su Figma. Non usiamo Canva — ogni contenuto ha un livello di cura che si vede e si sente.</p>
+        <p>Photoshop per la post-produzione e il ritocco, Illustrator per ogni elemento grafico, icona e illustrazione. Niente Canva — ogni asset visivo nasce da un file vettoriale, costruito da zero, pensato per quel brand specifico.</p>
         <div class="tools-badges">
           <span class="tool-badge-sm" style="color:#31A8FF">Ps Photoshop</span>
-          <span class="tool-badge-sm" style="color:#31A8FF">Lr Lightroom</span>
-          <span class="tool-badge-sm" style="color:#A259FF">Fi Figma</span>
+          <span class="tool-badge-sm" style="color:#FF9A00">Ai Illustrator</span>
         </div>
       </div>
       <div class="tool-mockup">
@@ -446,7 +495,7 @@
           <span class="tool-mockup-title">Adobe Illustrator — Progetto grafico</span>
         </div>
         <div class="tool-mockup-body has-image">
-          <img src="assets/images/illustrator.webp" alt="Adobe Illustrator - progetto grafico per contenuti social e branding" loading="lazy" class="tool-mockup-img" />
+          <img src="assets/images/illustrator.webp" alt="Adobe Illustrator — costruzione grafica vettoriale per social e branding" loading="lazy" class="tool-mockup-img" />
         </div>
       </div>
     </div>
@@ -485,39 +534,62 @@
       </div>
     </div>
 
-    <div class="ai-expanded reveal">
-      <div class="ai-expanded-header">
-        <div class="ai-expanded-icon">⚡</div>
-        <div>
-          <h3>L'AI in mani sbagliate produce rumore. In mani nostre, produce vantaggio.</h3>
-          <p>Tutti oggi "usano l'AI". Il punto non è averla — è sapere <em>quando</em> usarla, <em>come</em> guidarla e, soprattutto, <em>quando non farlo</em>. Quella distinzione è la differenza tra un contenuto generico e uno che converte.</p>
+    <!-- GROWLY UPDATE - E: AI section v2 -->
+    <div class="ai-v2 reveal">
+      <span class="ai-v2-label">Il nostro approccio all'AI</span>
+      <div class="ai-v2-title">L'AI da sola produce contenuti generici.<br>Noi la usiamo come strumento, non come scorciatoia.</div>
+      <p class="ai-v2-sub">Ecco esattamente dove entra nel nostro workflow e dove, invece, non la tocchiamo.</p>
+      <div class="ai-v2-cols">
+        <div class="ai-v2-col">
+          <div class="ai-v2-col-title">Dove l'AI ci accelera</div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">✍️</div>
+            <div>
+              <div class="ai-v2-item-title">Script e struttura dei copy</div>
+              <div class="ai-v2-item-desc">Abbozza la struttura, noi riscriviamo con la tua voce. Il risultato suona come te, non come ChatGPT.</div>
+            </div>
+          </div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">🔍</div>
+            <div>
+              <div class="ai-v2-item-title">Ricerca e analisi competitor</div>
+              <div class="ai-v2-item-desc">Trend di settore, angoli narrativi, analisi della concorrenza in pochi minuti. Arriviamo alle riprese già preparati.</div>
+            </div>
+          </div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">⚙️</div>
+            <div>
+              <div class="ai-v2-item-title">Automazioni di processo</div>
+              <div class="ai-v2-item-desc">Caption in varianti, hashtag ottimizzati, scheduling. Così il nostro tempo va dove conta: la qualità creativa.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ai-v2-col">
+          <div class="ai-v2-col-title">Dove non la usiamo mai</div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">🎨</div>
+            <div>
+              <div class="ai-v2-item-title">Creatività originale e concept</div>
+              <div class="ai-v2-item-desc">Un'idea che colpisce non nasce da un prompt. Nasce da chi conosce il tuo brand e sa cosa vuole il tuo pubblico.</div>
+            </div>
+          </div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">🗣️</div>
+            <div>
+              <div class="ai-v2-item-title">Tono di voce del brand</div>
+              <div class="ai-v2-item-desc">Ogni brand ha una voce precisa. Quella non si genera — si costruisce nel tempo e si difende ad ogni contenuto.</div>
+            </div>
+          </div>
+          <div class="ai-v2-item">
+            <div class="ai-v2-icon">👥</div>
+            <div>
+              <div class="ai-v2-item-title">Relazione con la community</div>
+              <div class="ai-v2-item-desc">Rispondere ai commenti, gestire i DM, costruire fiducia. Questa roba è umana per definizione.</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="ai-use-cases">
-        <div class="ai-use-case">
-          <div class="ai-uc-icon">✍️</div>
-          <div class="ai-uc-title">Script & Copy</div>
-          <div class="ai-uc-desc">L'AI abbozza la struttura, noi riscriviamo con la tua voce. Il risultato finale suona come te — non come ChatGPT.</div>
-        </div>
-        <div class="ai-use-case">
-          <div class="ai-uc-icon">🔍</div>
-          <div class="ai-uc-title">Ricerca & Trend</div>
-          <div class="ai-uc-desc">Analisi di competitor, trend di settore, angoli narrativi in pochi minuti. Arrivare preparati alle riprese fa la differenza sul risultato.</div>
-        </div>
-        <div class="ai-use-case">
-          <div class="ai-uc-icon">⚙️</div>
-          <div class="ai-uc-title">Processi ripetitivi</div>
-          <div class="ai-uc-desc">Caption varianti, hashtag ottimizzati, scheduling automatizzato — così il nostro tempo lo investiamo dove conta: la qualità creativa.</div>
-        </div>
-        <div class="ai-use-case ai-uc-limit">
-          <div class="ai-uc-icon">🚫</div>
-          <div class="ai-uc-title">Quando non usarla</div>
-          <div class="ai-uc-desc">Creatività originale, tono di voce del brand, relazione con la community. Queste cose non si delegano mai a una macchina.</div>
-        </div>
-      </div>
-      <div class="ai-bottom-line">
-        <span class="ai-bl-accent">La differenza non è avere accesso all'AI.</span> È avere la competenza per capire dove aggiunge valore reale e dove, invece, distrugge l'identità del tuo brand. Noi quella linea la conosciamo bene — e non la superiamo mai.
-      </div>
+      <p class="ai-v2-note">La differenza non è chi ha accesso all'AI — ce l'hanno tutti.<br>È chi sa dove finisce lo strumento e dove inizia il lavoro vero.</p>
     </div>
   </div>
 </section>

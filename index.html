@@ -239,7 +239,7 @@
     .method-timeline::before { content:''; position:absolute; top:60px; left:12.5%; right:12.5%; height:2px; background:linear-gradient(90deg,var(--accent),var(--mint),var(--accent)); opacity:0.2; }
     .method-card { background:var(--bg-card-solid); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2rem 1.5rem; text-align:center; position:relative; z-index:1; transition:all var(--transition-smooth); }
     .method-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:var(--shadow-md); }
-    .method-number { font-family:var(--font-display); font-size:3.5rem; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--mint)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; opacity:0.2; line-height:1; margin-bottom:0.75rem; }
+    .method-number { font-family:var(--font-display); font-size:3.5rem; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--mint)); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; opacity:0.2; line-height:1; margin-bottom:0.75rem; }
     .method-icon { font-size:2rem; margin-bottom:1rem; }
     .method-title { font-size:1.1rem; font-weight:700; margin-bottom:0.6rem; }
     .method-desc { color:var(--text-secondary); font-size:0.85rem; line-height:1.65; }
@@ -518,7 +518,7 @@
         <p>Scriviamo codice HTML, CSS e JS a mano — niente page builder, niente template. L'AI ci accelera sulla ricerca e le bozze, ma ogni riga di codice è sotto il nostro controllo.</p>
         <div class="tools-badges">
           <span class="tool-badge-sm" style="color:var(--mint)">&lt;/&gt; HTML/CSS/JS</span>
-          <span class="tool-badge-sm" style="background:linear-gradient(135deg,var(--accent),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Integration</span>
+          <span class="tool-badge-sm" style="background:linear-gradient(135deg,var(--accent),var(--mint));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent">AI Integration</span>
         </div>
       </div>
       <div class="tool-mockup">
